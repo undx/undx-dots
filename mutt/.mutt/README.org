@@ -1,0 +1,15 @@
+
+* My neomutt configuration
+
+** Installation
+*** Arch
+    : yaourt -S neomutt
+
+*** From source
+
+#+BEGIN_SRC 
+git clone https://github.com/neomutt/neomutt
+cd neomutt
+./configure
+#+END_SRC
+
