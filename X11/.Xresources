@@ -1,0 +1,153 @@
+!
+! name.Class.resource: value
+!
+#ifndef MON_DPI
+    #define MON_DPI 96
+#endif
+
+#ifndef CURSOR_SIZE
+    #define CURSOR_SIZE 24
+#endif
+
+#ifndef FONT_SIZE
+    #define FONT_SIZE 18
+#endif
+
+!!!!! Solarized light (|dark)
+#include "./Dropbox/undx/config/xresources/solarized-Xresources.light"
+!
+!##############!
+!### Colors ###!
+!##############!
+! (x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)
+! Black + DarkGrey
+!!! *color0  : #000000
+!!! *color8  : #555555
+!!! ! DarkRed + Red
+!!! *color1  : #AA0000
+!!! *color9  : #FF5555
+!!! ! DarkGreen + Green
+!!! *color2  : #00AA00
+!!! *color10 : #55FF55
+!!! ! DarkYellow + Yellow
+!!! *color3  : #AA5500
+!!! *color11 : #FFFF55
+!!! ! DarkBlue + Blue
+!!! *color4  : #0000FF
+!!! *color12 : #5555FF
+!!! ! FarkMagenta + Magenta
+!!! *color5  : #AA00AA
+!!! *color13 : #FF55FF
+!!! ! DarkCyan + Cyan (both not tango)
+!!! *color6  : #00AAAA
+!!! *color14 : #55FFFF
+!!! ! LightGrey + White
+!!! *color7  : #AAAAAA
+!!! *color15 : #FFFFFF
+!!! ! base
+!!! *foreground: #ffffff
+!!! *background: #000000
+
+!###############!
+!### Xcursor ###!
+!###############!
+ !*.alpha:0; 
+!#####################!
+!### XDefault font ###!
+!#####################!
+*.font: Ubuntu Mono-18
+!*.font: xft:Ubuntu Mono:style=Regular:size=18:antialias=true:hinting=true
+!*.font: xft:Monospace:size=18
+!*.font: Fira Code-18
+rofi.font: Ubuntu Mono 18
+!rofi.font: Fira Code 18
+!###############!
+!### Xcursor ###!
+!###############!
+Xcursor.size: 12
+Xcursor.theme: DMZ-Black
+!###########!
+!### Xft ###!
+!###########!
+Xft*antialias:      true
+Xft*lcdfilter:      lcdnone
+Xft*hintstyle:	    hintslight
+!####################!
+!### rxvt-unicode ###!
+!####################!
+! no scrollbar
+URxvt*scrollBar: False
+URxvt*geometry: 120x40 
+! underline and links
+URxvt.colorUL: #4682B4
+URxvt*cursorBlink: true
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+URxvt.fading:               15
+URxvt.letterSpace:      -1
+URxvt.font: xft:Ubuntu Mono:style=Regular:size=18:antialias=true:hinting=true
+URxvt.boldFont: xft:Ubuntu Mono:style=Bold:size=18:antialias=true:hinting=true
+URxvt.boldItalicFont: xft:Ubuntu Mono:style=Bold Italic:size=18:antialias=true:hinting=true
+URxvt*saveLines: 50000
+URxvt.urgentOnBell: true
+! get rid of "iso 14755 mode" and "keycap picture insert mode" notification
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.font-size.step: 1
+! Lien cliquable
+! 1=clic gauche, 2= clic milieu, 3=clic droit
+URxvt.perl-ext-common:  default,matcher,tabbed,url-picker,font-size
+URxvt.urlLauncher:      google-chrome
+URxvt.matcher.button:   3
+! Prise en charge des onglets
+! shift+bas ou clic sur NEW= ouvrir nouvel onglet,
+! shift + fleche gauche/droite=navigation dans les onglets.
+! ctrl + fleche gauche/droite= deplacement onglet
+! ctrl+d ou taper exit = fermer onglet/terminal
+!URxvt.matcher.button: 1 URxvt.matcher.pattern.1: /.*
+URxvt.keysym.C-f: perl:url-picker
+URxvt.keysym.CM-u: perl:url-picker
+Rxvt.keysym.C-equal: perl:font-size:increase
+URxvt.keysym.C-minus: perl:font-size:decrease
+URxvt.tabbed.autohide: true
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! ST
+!! Transparency (0-1):
+st.alpha: 0.92
+!! Set a default font and font size as below:
+st.font: Monospace-16
+! st.termname: st-256color
+! st.borderpx: 2;
+
+emacs.alpha: 1
+
+!! XScreenSaver
+XScreenSaver*dateFormat: %H:%M
+XscreenSaver*font: xft:Ubuntu Mono:style=Regular:size=14:antialias=true:hinting=true
+! sudo : catch attention
+sudo.font: Monospace-16
+sudo.*foreground: #ffffff
+sudo.*background: #990000
+! journal logging
+journalctl.font: Monospace-12
+journalctl.*foreground: #000000 
+journalctl.*background: #eeeeee
+! xsession-errors logging
+xerrors.font: Monospace-12
+xerrors.*foreground: #000000 
+xerrors.*background: #eeefff
+! ranger FM             
+ranger.font: Monospace-16
+! htop
+htop.font: Monospace-16
+! qtile log
+qtilelog.font:           xft:Ubuntu Mono:style=Regular:size=11:antialias=true:hinting=true
+! calculator
+!calcy.*alpha: 60
+calcy.font: Monospace-16
+calcy.*foreground: #ffffff
+calcy.*background: #005577
+! i3wm
+

@@ -1,0 +1,45 @@
+# basic 
+#  body (match regexp in the body of messages)
+#  bold (hiliting bold patterns in the body of messages)
+#  header (match regexp in the message header)
+#  index (match pattern in the message index)
+#  quoted (text matching $quote_regexp in the body of a message)
+#  quoted1, quoted2, ..., quotedN (higher levels of quoting)
+#  underline (hiliting underlined patterns in the body of messages)
+#
+color normal black color240
+color error      color160  default # error messages printed by mutt
+color message    yellow    default # informational messages
+color tilde      color245  default # the ``~'' used to pad blank lines in the pager
+color markers    color123  default # markers at the beginning of wrapped lines in the pager
+color attachment color240  default
+color search     default   color238  # hiliting of words in the pager
+color status     color231  color17  # mode lines used to display info about the mailbox or message
+color indicator  default  color245  # arrow or bar used to indicate the current item in a menu
+
+color bold   brightwhite  default         # boldface text
+color underline  brightgreen  default     # underlined text
+color tree   blue     default  # thread tree drawn in the message index and attachment menu
+#
+color index  color130 default "~N|~O" # new || old messages
+color index  color240 color232 "~D" # deleted messages
+color index  green    default "~T" # tagged messages
+
+color hdrdefault default      color245 # default color of the message header in the pager
+color header     color240     color245 ^Date:
+color header     yellow       color245 ^From:
+color header     brightyellow color245 ^Subject:
+
+color body   brightcyan   default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+color body   brightwhite  default "(http|ftp|news|telnet|finger|https)://[^ \">\t\r\n]*"
+color body   brightwhite  default "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+
+color quoted    color249 default
+color quoted1   color247 default
+color quoted2   color245 default
+color quoted3   color243 default
+color quoted4   color243 default
+color quoted5   color241 default
+color quoted6   color239 default
+color quoted7   color237 default
+color signature color249 default

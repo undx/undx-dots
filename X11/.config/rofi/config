@@ -1,0 +1,10 @@
+rofi.terminal: st
+rofi.modi: window,run,drun,ssh,windowcd,keys
+rofi.combi-modi: window,run,drun,ssh,windowcd,keys
+#rofi.modi:          combi
+rofi.font: Ubuntu Mono 16
+rofi.theme: undx.rasi
+rofi.opacity: 80
+rofi.show-icons: True
+rofi.fixed-num-lines: False
+plugin-path: /usr/local/lib/rofi/

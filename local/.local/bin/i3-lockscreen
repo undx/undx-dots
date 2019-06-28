@@ -1,0 +1,10 @@
+#!/bin/bash
+
+ffmpeg -loglevel quiet -i <(import -silent -window root png:-) -i ~/.config/i3/images/rick_morty_lock.png -y -filter_complex "boxblur=5:1,overlay=(main_w-overlay_w-10):(main_h-overlay_h-10)" -vframes 1 /tmp/lock_screen.png
+i3lock -i /tmp/lock_screen.png
+
+#
+# idea: mute sound
+# 
+# or
+# i3lock -i <(import -silent -window root png:- | mogrify -blur 0x8 png:- | composite -gravity South -geometry -20x1200 ~/Pics/Evil_Rick_Sprite.png png:- png:-)

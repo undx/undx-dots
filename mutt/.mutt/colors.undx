@@ -1,0 +1,63 @@
+## based on criteria(smartcase): order counts. Last evaluated wins !
+# general-doesn't-fit stuff
+color normal  color252 color233
+color error   color193 color124
+color markers color142 color233
+color tilde   color142 color233
+color status  color172 color233
+
+# index stuff
+color tree      color244 color233
+color indicator color255 color235
+color index     color221 color233 ~N|~O # new
+color index     color240 color233 ~P    # from ME
+color index     color64  color233 ~T    # tagged
+color index     color124 color233 ~D    # deleted
+color index     color154 color124 "~f security"
+#color index  color069   default "~u"       # a ml subscribed message
+#color index  brightblue  default "~F"       # flagged
+#color index  green       default "~(~N|~O)" # threads with new messages
+# header stuff
+color hdrdefault color248 black
+color header     color200 black "^X-Label"
+color header     color226 black "^Subject"
+color header     color226 black "^From"
+color header     color202 black "^Date"
+# url, email and web stuff
+color body color202     color233 "(emmanuel|manu|gallois|undx)" # me mentionned
+color body color68      color233 "(finger|ftp|http|https|news|telnet)://[^ >]*"
+color body color111     color233 "<URL:[^ ]*>"
+# URL highlighting
+# color body      brightred       black   `cat "$HOME/.urlview"|sed -ne 's/^REGEXP //;ta' -e b -e :a -e 's/\([ ";.?]\)/\\\1/g;p'|tee /tmp/url.log`
+# mono  body      bold                    `cat "$HOME/.urlview"|sed -ne 's/^REGEXP //;ta' -e b -e :a -e 's/\([ ";.?]\)/\\\1/g;p'|tee /tmp/url.log`
+#
+#.urlview
+#REGEXP \b(((https?|ftp|gopher)|mailto):(//)?[^ <>"\t]*|(www|ftp)[0-9]?\.[-a-z0-9.]+)[^ .,;\t\n\r<">\):]?[^, <>"\t]*[^] .,;\t\n\r<">\):]
+#COMMAND $HOME/bin/sensible-browser -T
+#
+#
+color body color111     color233 "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
+color body color111     color233 "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+color body brightred    color233 "^-.*"
+color body green        color233 "^[+].*"
+color body brightwhite  color233 "^diff .*"
+color body brightyellow color233 "^@@.*"
+color body brightcyan   color233 "(^| )\\*[^*]+\\*( |$)" # *bold*
+color body brightcyan   color233 "(^| )_[^_]+_( |$)"     # _underline_
+color body brightcyan   color233 "(^| )/[^/]+/( |$)"     # /italic/
+
+# misc body stuff
+color attachment color111 color233
+color signature  color244 color233
+
+# quote levels
+color quoted  color34  color233
+color quoted1 color142 color233
+color quoted2 color34  color233
+color quoted3 color142 color233
+color quoted4 color34  color233
+color quoted5 color142 color233
+color quoted6 color34  color233
+color quoted7 color142 color233
+color quoted8 color34  color233
+color quoted9 color142 color233

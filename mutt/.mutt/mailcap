@@ -1,0 +1,70 @@
+#
+# mailcap
+# http://www.rfc-editor.org/rfc/rfc1524.txt
+#
+#
+# Mutt uses the copiousoutput field to indicate that the viewer is
+# non-interactive and can be used to automatically view attachments
+# within the pager as well as from the attachment menu. Conversely,
+# mutt uses the absence of the copiousoutput field to indicate that
+# the viewer is interactive and can be used only from the attachment
+# menu. Therefore, any lines with the copiousoutput field should be
+# last among those of a given content-type. This usage is an extension
+# of that specified in RFC 1524.
+#
+#The "copiousoutput" field indicates that the output from the
+#     view-command will be an extended stream of output, and is to be
+#     interpreted as advice to the UA (User Agent mail-reading program)
+#     that the output should be either paged or made scrollable. Note
+#     that it is probably a mistake if needsterminal and copiousoutput
+#     are both specified.
+#
+# HTML content
+text/html; ~/.mutt/view_attachment.sh %s html
+text/html; w3m -I%{charset} -O'UTF-8' -T text/html ; copiousoutput; needsterminal;
+# convert html to markdown for easy reading
+#text/html; pandoc -f html -t markdown; copiousoutput; compose=vim %s
+#
+# text/html; open -a 'Google Chrome' %s; description=HTML Text; nametemplate=%s.html;
+# text/html; lynx -dump -force_html -display_charset=utf-8 %s; copiousoutput; needsterminal;
+# text/html; lynx -dump -display-charset=UTF-8% -assume_charset=%{charset} %s; nametemplate=%s.html; copiousoutput
+
+# Calendar
+text/calendar; qlmanage -p %s;
+text/calendar; ~/bin/view_ics.rb %s; copiousoutput;
+
+# Text
+#text/plain; qlmanage -p %s;
+#text/* ; ; edit=vim %s ; copiousoutput ;
+
+# images
+image/*;    qlmanage -p %s;
+image/jpeg; jp2a --colors -f %s; copiousoutput;
+image/gif;  anytopnm %s | pnmscale -xsize 80 -ysize 50 | ppmtopgm | \
+
+# PDF
+application/pdf; qlmanage -p %s;
+application/pdf; pdftotext -fixed 78 -enc UTF-8 %s -; copiousoutput;
+
+# MS Word
+application/msword ; ; test=zsh -c "export | egrep '^DISPLAY='"; edit=ooffice %s;
+application/msword ; antiword %s ; copiousoutput ; 
+
+# MS Excel
+application/x-msexcel    ; ~/.mutt/view_attachment.sh %s
+application/excel        ; ~/.mutt/view_attachment.sh %s
+application/msexcel      ; ~/.mutt/view_attachment.sh %s
+application/vnd.ms-excel ; ~/.mutt/view_attachment.sh %s
+application/vnd.oasis.opendocument.spreadsheet ; ~/.mutt/view_attachment.sh %s '-' '/Applications/LibreOffice.app'
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; ~/.mutt/view_attachment.sh %s '-' '/Applications/LibreOffice.app'
+
+
+# Archive files
+application/zip             ; unzip -l %s      ; copiousoutput;
+application/x-zip-compressed; unzip -l %s      ; copiousoutput;
+application/x-tar-gz        ; tar tvzf %s 2>&- ; copiousoutput;
+application/x-bzip          ; tar tvjf %s 2>&- ; copiousoutput;
+
+# Unidentified
+application/octet-stream; ~/.mutt/view_attachment.sh %s "-"
+

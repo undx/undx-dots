@@ -1,0 +1,38 @@
+**/#*#
+**/*.git
+**/*.swp
+**/*~
+**/cookies*
+**/cache/*
+**/private/*
+*.DS_Store
+*.dat
+*.directory
+*.log
+*.org-id-locations
+*.pid
+*.sql
+*.sqlite
+*.uuid
+
+# emacs
+**/.emacs.d/elpa/
+**/.emacs.d/eshell/
+**/.emacs.d/url/
+**/.emacs.d/request/
+**/.emacs.d/transient/
+**/.emacs.d/org-gcal/
+**/.emacs.d/recentf
+**/.emacs.d/smex-items
+**/.config/gtk-3.0/bookmarks
+**/.config/ranger/bookmarks
+**/.config/ranger/history
+**/.config/ranger/tagged
+# copyq
+**/copyq/*
+!**/copyq/themes
+!**/copyq/copyq.conf
+# vim
+**/.vim/.netrwhist
+**/.vim/swap
+**/.vim/plugged

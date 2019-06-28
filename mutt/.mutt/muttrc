@@ -1,0 +1,390 @@
+### vim:ft=muttrc:fdm=marker
+### .muttrc
+# Paths {{{
+
+set alias_file       = ~/.mutt/alias         # where to store aliases
+set header_cache     = ~/.mutt/cache/headers # where to store headers
+set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
+set certificate_file = ~/.mutt/certificates  # where to store certs
+set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
+set tmpdir           = ~/.mutt/tmp           # where to keep temp files
+set signature        = ~/.mutt/signature     # my signature file
+#set signature="fortune -n 200 -s linux $home/signatures/adages|"
+# source some files...
+source $alias_file
+
+# }}}
+# variables {{{
+#
+set my_spell_fr = "/usr/local/bin/aspell --mode=email --lang=fr    check"
+set my_spell_en = "/usr/local/bin/aspell --mode=email --lang=en_US check"
+set ispell = $my_spell_fr
+
+# }}}
+# editor {{{
+set editor = 'mvim -f -c "set spell spelllang=fr ft=mail tw=72 fo+=aw" -c "colorscheme desert" +/^$'
+# }}}
+# contacts {{{
+# use the os x address book
+#set query_command = "contacts -sf '%etoken%n' '%s' | sed -e 's/token/\t/g'"
+#bind editor <tab> complete-query
+#bind editor ^t    complete
+# }}}
+# basic options {{{
+
+#source ~/.mutt/colors.undx
+source ~/.mutt/mutt-colors-solarized-dark-256.muttrc
+
+set wait_key   = yes     # i want to see stuff...
+set mbox_type  = maildir # mailbox type
+set timeout    = 3       # idle time before scanning
+set mail_check = 0       # minimum time between scans
+unset move               # gmail does that
+set delete               # don't ask, just do!
+unset confirmappend      # don't ask, just do!
+set quit                 # don't ask, just do!
+unset mark_old           # read/new is good enough for me
+set beep_new             # bell on new mails
+set sig_on_top           # puts signature above quoted or forwarded text
+set sig_dashes           # dashes before sig
+set pipe_split           # sends tagged messages 1by1 otherwise they're concatenated with $pipe_sep
+set pipe_decode = no     # strip headers and eval mimes when piping
+set thorough_search      # strip headers and eval mimes before searching
+
+# }}}
+#
+# encodings {{{
+set charset = "utf-8" # also fallback for send_charset
+set send_charset   = "us-ascii:utf-8:iso-8859-1:iso-8859-15"
+set config_charset = "utf-8" # recode rc files to this charset. $charset must be set before !
+#set display_filter='tr "\200\202\221\222\223\224\225\226\227" "\244\054\140\047\042\042\052\055\055"' # fix evil MS CP
+# }}}
+# sidebar patch {{{
+
+set sidebar_delim   = ' │'
+set sidebar_visible = yes
+set sidebar_width   = 30
+set sidebar_folderindent
+set sidebar_format="%B%?F? [%F]?%* %4S%?N?(%N)?" # "%b%?f? [%f]?%* %?n?%n/?%4s" 
+color sidebar_new     color221   color233
+#color sidebar_flagged brightblue color233
+bind index,pager ) sidebar-next
+bind index,pager ( sidebar-prev
+bind index,pager _ sidebar-open
+macro index,pager + "<enter-command>toggle sidebar_visible<enter>" "toggle sidebar"
+
+# }}}
+# status bar {{{
+
+#set status_chars  = " *%a"
+set status_format = "───[ folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───[ %s/%S ]──%>─%?p?( %p postponed )?───"
+#default: "-%r-mutt: %f [msgs:%?m?%m/?%m%?n? new:%n?%?o? old:%o?%?d? del:%d?%?f? flag:%f?%?t? tag:%t?%?p? post:%p?%?b? inc:%b?%?l? %l?]---(%s/%s)-%>-(%p)---"
+
+# }}}
+#
+# index view options {{{
+#
+set date_format  = "%d/%m/%y %H:%M"
+set index_format = "%4C %Z %D %-25.25:L (%?M?%.4M&%4c?)[%N] %s %y"
+set sort = threads
+set sort_aux = reverse-last-date-received
+set collapse_unread = no        # don't collapse threads with unread message
+# }}}
+#
+# pager view options {{{
+
+set pager_format = "───[%Z]─ %c/%m: %-20.20n %s %>─(%P)───"
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+set implicit_autoview      # display what mutt can display
+auto_view text/html text/plain image/* application/pdf  # display automaticaly in pager
+alternative_order text/html text/enriched text/plain *     # display order if multipart/alternative
+
+#
+##perl -pe "undef $/; s/please consider your environmental respon.*\n(.*\n){1,}.*systems.//m;"
+# see http://www.fourmilab.ch/webtools/demoroniser/
+# works in pager, not in index
+#set display_filter='tr "\200\202\221\222\223\224\225\226\227" "\244\054\140\047\042\042\052\055\055"' # fix evil ms cp
+# }}}
+# compose view options {{{
+
+set realname = "Emmanuel GALLOIS"    # who am i?
+set envelope_from                    # which from?
+set metoo                            # add me to recipients
+#set autoedit       # skip asking to: subj: ...
+set edit_headers=no                  # show headers when composing or not!
+set fast_reply                       # skip to compose when replying
+set fcc_attach                       # save attachments with the body
+unset mime_forward                   # forward attachments as part of body
+set forward_format = "fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+set text_flowed=yes                  # mutt will generate text/plain; format=flowed attachments.
+
+# }}}
+# headers {{{
+my_hdr x-homepage: http://emmanuel.gallois.pro
+my_hdr x-operating-system: `uname -mnrs`
+my_hdr x-mailer: `mutt -v`
+
+set my_display_headers = "x-label: to: cc: date: from: subject:"
+ignore *                                                    # ignore all headers
+unignore message-id: from: to: cc: date: subject: x-label:  # show only these
+unhdr_order *
+hdr_order $my_display_headers # and in this order
+
+# }}}
+# attachment view{{{
+
+set rfc2047_parameters   # decode attachments name like  =?iso-8859-1?q
+# }}}
+# account emmanuel.gallois@gmail.com {{{
+
+set folder = ~/.mail/gmail  # mailbox location
+set spoolfile = "+inbox" # default inbox.
+# other special folders.
+set mbox      = "+archive"
+set postponed = "+drafts"
+set trash     = "+trash"
+
+# alternate email addresses.
+alternates emmanuel.gallois@ egallois@ undx
+
+# mailboxes to show in the sidebar.
+mailboxes +inbox +archive +sent +drafts +spam +trash +notes\
+          +work +work/agnesb +work/altic +work/retail-developments \
+          +achats +administratif +code +famille +home +hosting +potes \
+          +ml +ml/freebsd +ml/mutt +ml/openbsd +ml/rails +ml/redmine +ml/ruby +ml/rubymotion +ml/vim \
+          +search \
+
+# sending email.
+set from          = "emmanuel.gallois@gmail.com" # helps mutt
+set sendmail      = "/usr/local/bin/msmtp -a gmail"
+set sendmail_wait = 0 # no please don't silently fail, email is important
+unset record
+
+# }}}
+# scoring {{{
+#
+#set score_threshold_delete = -1 # delete if <=
+#set score_threshold_flag = 9999 # flag   if =>
+#set score_threshold_read = -1   # mark as read if <=
+#unscore * # reset all scorings
+# score patten value
+# unscore pattern
+
+# }}}
+# mailing-lists {{{
+# commands
+# lists     : this is a mailing-list
+# subscribe : i'm subscribed to
+#
+set honor_followup_to  #  mail-followup-to header is honored when group-replying to a message
+subscribe openbsd
+subscribe freebsd-security
+subscribe @mutt.org
+subscribe @googlegroups.com
+subscribe railsfrance@
+subscribe rubyfr-public@
+subscribe @ruby-lang.org
+subscribe vim-fr
+# }}}
+# hooks {{{
+folder-hook . "exec collapse-all"
+folder-hook .    set sort=threads# ; set sort_aux=reverse-date
+folder-hook spam set sort=from   # ; set sort_aux=to
+
+# }}}
+# key bindings {{{
+
+# index {{{
+
+bind index,pager { previous-unread
+bind index,pager } next-unread
+
+# convenient change-folder macros
+macro index,pager ,i  "<change-folder>=inbox<enter>"      "Go to INBOX"
+macro index,pager ,s  "<change-folder>=sent<enter>"       "Go to sent"
+macro index,pager ,a  "<change-folder>=archive<enter>"    "Go to archive"
+macro index,pager ,f  "<change-folder>=famille<enter>"    "Go to famille"
+macro index,pager ,h  "<change-folder>=hosting<enter>"    "Go to hosting"
+macro index,pager ,x  "<change-folder>=search<enter>"     "Go to searches"
+macro index,pager ,wa "<change-folder>=work/altic<enter>" "Go to work/altic"
+macro index,pager ,mf "<change-folder>=ml/freebsd<enter>" "Go to ml/freebsd"
+macro index,pager ,mm "<change-folder>=ml/mutt<enter>"    "Go to ml/mutt"
+macro index,pager ,mo "<change-folder>=ml/openbsd<enter>" "Go to ml/openbsd"
+macro index,pager ,mr "<change-folder>=ml/rails<enter>"   "Go to ml/rails"
+macro index,pager ,mu "<change-folder>=ml/ruby<enter>"    "Go to ml/ruby"
+macro index,pager ,mv "<change-folder>=ml/vim<enter>"     "Go to ml/vim"
+
+# macro index s "<pipe-message>cat > ~/desktop/"  "save message as"
+# macro index,pager y "<enter-command>unset trash\n <delete-message>" "gmail archive message"
+# macro index,pager d "<enter-command>set trash=\"imaps://imap.googlemail.com/[gmail]/bin\"\n <delete-message>" "gmail delete message"
+# macro index,pager gi "<change-folder>=inbox<enter>" "go to inbox"
+
+# macro index d "<save-message>+private/trash<enter>" "move message to the trash"
+# macro index s "<save-message>+private/spam<enter>" "mark message as spam"
+
+# mark all as read
+# macro index \cr "t~u<enter><tag-prefix><clear-flag>n<untag-pattern>.<enter>" "mark all messages as read"
+
+# sync email
+macro index,pager <f5> "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
+macro index,pager <f6> "<shell-escape>offlineimap -qf inbox<enter>" "run offlineimap to sync inbox"
+
+# saner copy/move dialogs
+# macro index c "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+# macro index m "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+macro generic     ,r ":source ~/.mutt/muttrc<enter>" "reload configuration"
+
+# search with notmuch
+macro index,pager <f8> \
+      "<enter-command>unset wait_key<enter><shell-escape>~/bin/notmuch-mutt-rb -o ~/.mail/gmail/search<enter><change-folder-readonly>+search<enter>" \
+      "notmuch: search mail"
+macro index,pager <f9> \
+      "<enter-command>unset wait_key<enter><enter-command>unignore message-id<enter><pipe-message>~/bin/notmuch-mutt-rb -o ~/.mail/gmail/search -t<enter><change-folder-readonly>+search<enter><enter-command>set wait_key<enter>" \
+      "notmuch: reconstruct thread"
+
+# }}}
+# pager {{{
+
+# bind pager \# noop
+# bind pager k  previous-line
+# bind pager j  next-line
+# bind pager gg top
+# bind pager g  bottom
+#
+# bind pager r  group-reply
+# bind pager n  search-opposite
+#
+# macro pager \cu "|urlview<enter>" "call urlview to open links"
+# macro pager s "<pipe-message>cat > ~/desktop/"  "save message as"
+
+# }}}
+# compose {{{
+
+# bind compose p postpone-message
+
+# }}}
+# attachment {{{
+
+# view, god dammit!
+bind attach <space>  view-mailcap
+
+# }}}
+# "open in vim" {{{
+
+# macro index,pager v "|vim -c 'setlocal ft=mail' -c 'setlocal buftype=nofile' -<enter>"              "open in vim"
+# macro index,pager m "|mvim -c 'setlocal ft=mail' -c 'setlocal buftype=nofile' - >/dev/null<enter>"  "open in macvim"
+
+# }}}
+
+# }}}
+
+
+# from the net ...
+
+# `if mutt -v|head -1|egrep '1\.[0-4]|1\.5\.[0-5][^0-9]' >/dev/null; then echo set alternates=; else echo alternates; fi` "^((tpope|root)@`hostname`(\.simpson)?|tpope@(tpope\.us|sexygeek\.us)|tim[p]ope@sbcglobal\.net|(tpope|root|tim)@sexygeek\.org|(kstrp00|timothy\.pope)@tamuk\.edu|tim[a-z]*\.pope@jmwaller\.com|(skilled|talented|gifted)@cunn\.iling\.us|cunn@iling\.us|[a-za-z0-9_.%-]+@(rebelongto\.us|tpope\.info|tpope\.net))$"
+# set`[ -d "$home/.smime/certificates" ] && " smime_default_key=$(hostname).pem"`
+# set`[ -x /usr/bin/muttprint ] && echo " print_command=muttprint"`
+# set`[ -d "$home/.mutt_cache" ] && echo " header_cache=~/.mutt_cache message_cachedir=~/.mutt_cache"`
+
+
+
+## macro compose b "\
+# :set content_type='multipart/alternative; boundary=aalc9kt9j5desrqtrarou6vdbzdhe3cn'\
+# <pipe-message> pandoc --template=multipart.text -t markdown -o $home/desktop/multipartmessage<enter>\
+# <pipe-message> pandoc --template=multipart.html --standalone -t html >> $home/desktop/multipartmessage<enter>"
+
+# set display_filter=$home/scripts/createalias.sh # filters new messages through a shell script that automatically generates a mutt alias for new senders
+
+##!/bin/sh
+#message=$(cat)
+#newalias=$(echo "${message}" | grep ^"from: " | sed s/[\,\"\']//g | awk '{$1=""; if (nf == 3) {print "alias" $0;} else if (nf == 2) {print "alias" $0 $0;} else if (nf > 3) {print "alias", tolower($(nf-1))"-"tolower($2) $0;}}')
+#if grep -fxq "$newalias" $home/.mutt/aliases.txt; then
+#    :
+#else
+#    echo "$newalias" >> $home/.mutt/aliases.txt
+#fi
+#echo "${message}"
+
+#:r !grep smith-joe /path/to/aliases.txt
+
+#
+#######################################################################
+# gmail
+#######################################################################
+#set hostname              = "gmail.com"
+#set imap_user             = "emmanuel.gallois@gmail.com"
+#set from                  = "emmanuel.gallois@gmail.com" # helps mutt
+#alternates                  emmanuel.gallois@ egallois@ undx
+#set realname              = "emmanuel gallois"
+#set folder                = "imaps://imap.gmail.com:993" # shortcut : = or +
+#set spoolfile             = "+inbox"                     # shortcut : !
+#set postponed             = "+[gmail]/drafts"
+#set trash                 = "+[gmail]/trash" # "imaps://imap.gmail.com/[gmail]/trash"
+#set record               = "+[gmail]/sent mail"  # useless on gmail
+#set imap_check_subscribed = yes # all subscribed mailboxes/tags == mailboxes = all gmail tags
+#set imap_list_subscribed  = yes # not needed with previous option
+#unmailboxes                 =[gmail]/important         # doesn't work ! :(
+#set mail_check            = 90  # check mail every n seconds
+#set timeout               = 180 # idle wait time without user input before following actions: fetch mail, keep alive conn,... timeout after 15 seconds if no user input
+#set imap_keepalive        = 300 # needed ?set 900
+#set imap_passive          = no  # use existing connection
+#set header_cache          = ~/.mutt/cache/headers
+#set message_cachedir      = ~/.mutt/cache/bodies
+#set certificate_file      = ~/.mutt/certificates
+#set smtp_url              = "smtp://emmanuel.gallois@smtp.gmail.com:587/"
+#set signature             = "fortune" # ~/.mutt/signature
+#
+#
+#
+#set nocollapse_unread # don't collapse threads with unread message
+#set auto_tag
+#set allow_ansi
+#set charset = "utf-8" # also fallback for send_charset
+#set send_charset   = "us-ascii:utf-8:iso-8859-1:iso-8859-15"
+#set config_charset = "utf-8" # recode rc files to this charset. $charset must be set before !
+#set assumed_charset= "us-ascii:utf-8:iso-8859-1:iso-8859-15" # if charset undefined, mutt will try to guess with this charsets
+#set attach_charset = "us-ascii:utf-8:iso-8859-1:iso-8859-15" # same for attachments
+# set display_filter='tr  "\222"  "\047"'
+# see http://www.fourmilab.ch/webtools/demoroniser/
+# works in pager, not in index
+#set display_filter='tr "\200\202\221\222\223\224\225\226\227" "\244\054\140\047\042\042\052\055\055"' # fix evil MS CP
+#set rfc2047_parameters # decode attachments name like  =?iso-8859-1?Q
+#set send_charset #
+#
+#######################################################################
+# hooks #
+#######################################################################
+# folder-hook .   source ~/.mutt/defaults
+# folder-hook : set config variables
+#folder-hook .  push "<limit>!(~N|~O)<enter><collapse-all><limit>all<enter>"
+#folder-hook (ml.*|work.*) push "<collapse-all>"
+#folder-hook .  push "<limit>!~f\\\"davep@(hagbard.demon.co.uk|davep.org)\\\"<enter><last-entry>"
+# save-hook .* =iNBOX
+# save-hook cron@klendathu.ab.fr =+work/ab
+# message-hook . "unset display_filter"
+#message-hook .              "set pager='builtin'"
+#message-hook "~f pixmania"  "set pager='w3m'"
+# fcc-hook .* =fdkf
+#######################################################################
+# macros #
+#######################################################################
+#set meta_key = yes
+#macro index       ,m "<limit>!(~N|~O)<enter><collapse-all><limit>all<enter>"
+#macro index,pager y "<enter-command>unset trash\n <delete-message>" "Gmail archive message"
+#macro index,pager  S "<save-message>=[Gmail]/Spam<enter>"      "mark message as spam"
+
+#macro compose I "<enter-command>set ispell=$my_spell_en<enter><ispell><enter-command>set ispell=$my_spell_fr<enter>" "Spell check in English"
+#macro attach S  "<save-entry><kill-line>~/Desktop/<enter>y" "Save to desktop"

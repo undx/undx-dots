@@ -1,0 +1,40 @@
+#!/bin/bash
+
+USERNAME=${SUDO_USER:-$(id -u -n)}
+HOMEDIR="/home/$USERNAME"
+ROFI="rofi -dmenu -i "
+FIRST_MENU="Restart\nLock\nLogout\nSuspend\nReboot\nShutdown"
+SECOND_MENU="No\nYes"
+ACTION=""
+
+function choose {
+    CHOICE=$(echo -e $FIRST_MENU | $ROFI -p "")
+}
+
+function confirm {
+    CONFIRM=$(echo -e $SECOND_MENU | $ROFI -p "Are You Sure?")
+}
+
+function execute {
+    if [ "$CHOICE" == "Restart" ];then
+        ACTION="$HOME/bin/scripts/qtile-restart"
+    elif [ "$CHOICE" == "Lock" ];then
+        ACTION="xscreensaver-command -lock"
+    elif [ "$CHOICE" == "Logout" ];then
+        ACTION="$HOME/bin/scripts/qtile-logoff"
+    elif [ "$CHOICE" == "Suspend" ];then
+        ACTION="/bin/systemctl -i suspend"
+    elif [ "$CHOICE" == "Reboot" ];then
+        ACTION="/bin/systemctl -i reboot"
+    elif [ "$CHOICE" == "Shutdown" ];then
+        ACTION="/bin/systemctl -i poweroff"
+    fi
+
+    if [ "$CONFIRM" == "Yes" ];then
+        ${ACTION}
+    fi
+}
+
+choose && confirm && execute
+
+exit 0

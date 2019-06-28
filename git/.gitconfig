@@ -1,0 +1,51 @@
+[user]
+	name = undx
+	email = egallois@talend.com
+
+[core]
+	editor = emacsclient -a runemacs '%*'
+	autocrlf = input
+	longpaths = true
+	# Don't consider trailing space change as a cause for merge conflicts
+	whitespace = -trailing-space
+
+[color]
+	ui = true
+# color: normal, black, red, green, yellow, blue, magenta, cyan, or white
+# attribute: bold, dim, ul (underline), blink, and reverse
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "status"]
+    header = "#999999"
+    added = "#99cc99"
+    changed = "#f2777a"
+    untracked = "#ffcc66"
+    branch = "#2d2d2d" "#6699cc"
+    # Because the phrase "Detached HEAD" isn't unnerving enough
+    nobranch = bold ul blink "#f99157"
+
+[color "diff"]
+    meta = "#515151"
+    func = "#cc99cc"
+    frag = "#66cccc"
+    context = "#999999"
+    old = "#f2777a" "#393939"
+    new = "#bef2be" "#515151"
+
+[credential]
+	helper = /usr/lib/git-core/git-credential-gnome-keyring
+
+[tag]
+	# Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.
+	sort = version:refname
+
+[alias]
+	st = status
+	ci = commit
+	lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
+	oops = commit --amend --no-edit
+	review-local = "!git lg @{push}.."
