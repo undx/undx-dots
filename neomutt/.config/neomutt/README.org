@@ -1,0 +1,8 @@
+
+* MUA - neomutt configuration
+
+** Installation
+*** Arch
+    : yaourt -S neomutt notmuch
+
+

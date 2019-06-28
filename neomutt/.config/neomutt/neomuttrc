@@ -1,0 +1,16 @@
+
+# base paths
+set folder = ~/Mail
+set header_cache = ~/.cache/neomutt/headers
+set message_cachedir = ~/.cache/neomutt/bodies
+set tmpdir = ~/tmp/neomutt
+
+# servers and auths
+set my_pass = "`pass Work/Outlook/talend`"
+#set work_server = "`pass Work/Outlook/talend_server`"
+#set work_user   = "`pass Work/Outlook/talend_user`"
+#set work_pass   = "`pass Work/Outlook/talend_pass`"
+
+# UI
+source colors.github
+

@@ -26,8 +26,7 @@ stow -v$VERBOSE i3 -t $TARGET
 stow -v$VERBOSE local -t $TARGET
 stow -v$VERBOSE media -t $TARGET
 # mutt
-mkdir $TARGET/.mutt
-stow -v$VERBOSE mutt -t $TARGET
+stow -v$VERBOSE neomutt -t $TARGET
 #
 stow -v$VERBOSE shell -t $TARGET
 stow -v$VERBOSE vim -t $TARGET
