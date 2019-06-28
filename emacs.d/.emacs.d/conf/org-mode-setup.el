@@ -420,6 +420,6 @@ Try to remove superfluous information, like website title."
 
 ;; documents managements
 (require 'setup-deft)
-(require 'setup-jira)
+;;(require 'setup-jira)
 ;; see - nil org-fu.el
 
