@@ -1,7 +1,10 @@
 ##################################################
 # some vars #
 ##################################################
-set $term --no-startup-id st
+set $term    --no-startup-id st
+set $browser --no-startup-id surf
+set $fm      --no-startup-id st -c ranger  -e ranger
+set $mua     --no-startup-id st -c neomutt -e neomutt
 ##################################################
 # colors #
 ##################################################
@@ -12,9 +15,27 @@ set $orange_0 #fe8019
 set $orange_1 #d65d0e
 set $orange_2 #af3a03
 
-set_from_resource $fg  foreground
-set_from_resource $bg  background
-set_from_resource $fbg color8
+# colors form .Xresources
+set_from_resource $fg    foreground
+set_from_resource $bg    background
+set_from_resource $fbg   color8
+set_from_resource $col0  color0  #000000
+set_from_resource $col1  color1  #000000
+set_from_resource $col2  color2  #000000
+set_from_resource $col3  color3  #000000
+set_from_resource $col4  color4  #000000
+set_from_resource $col5  color5  #000000
+set_from_resource $col6  color6  #000000
+set_from_resource $col7  color7  #000000
+set_from_resource $col8  color8  #000000
+set_from_resource $col9  color9  #000000
+set_from_resource $col10 color10 #000000
+set_from_resource $col11 color11 #000000
+set_from_resource $col12 color12 #000000
+set_from_resource $col13 color13 #000000
+set_from_resource $col14 color14 #000000
+set_from_resource $col15 color15 #000000
+
 
 # client.focused          $fbg $fbg $fbg $fbg
 # client.focused_inactive $bg $bg $bg $bg
@@ -109,7 +130,7 @@ set $monitorRight  DVI-D-0
 ##################################################
 # window rules
 ##################################################
-for_window [class="^.*"] border pixel 5 
+for_window [class="^.*"] border pixel 5
 for_window [class=".*"]  border pixel 5 title_format "  %title"
 # #---Dropdown Windows---# #
 # General dropdown window traits. The order can matter.
@@ -126,7 +147,7 @@ for_window [instance="dropdown_*"] move position center
 # show title : bindsym Mod4+z border normal 0
 
 # this fix bottom bar overlapping emacs window:
-#for_window [class="Emacs"] border none 
+#for_window [class="Emacs"] border none
 # floating windows
 for_window [class="copyq"]             floating enable
 for_window [window_role="pop-up"]      floating enable
@@ -166,9 +187,9 @@ assign [class="nemo"] $ws4
 assign [class="Slack|Telegram|TelegramDesktop|Skype"] $ws5
 assign [class="transmission-gtk"] $ws6
 assign [class="Evolution"] $ws7
+assign [class="neomutt"]   $ws7
 assign [class="libreoffice|LibreOffice|soffice"] $ws8
 assign [title="journalctl|sudo|xerrors|i3-dump-log|tail|xerrors"] $ws9
-# WM_NAME(STRING) = "Zoom - Pro Account" / WM_CLASS(STRING) = "zoom", "zoom"
 assign [title="Zoom.-.Pro.Account"] $ws_zoom
 ##################################################
 # misc settings
@@ -183,7 +204,7 @@ floating_modifier Mod1
 # Prior, Next, Home, End
 # semicolon, apostrophe, slash, backslash
 # KP_1 .. KP_0
-# 
+#
 # bindsym --release $mod+Tab+h exec --no-startup-id xdotool key "Left",
 # so that i3 executes that keybinding when the key is released.
 # --release only seems to pay attention to when any key in the bind is released. If you release one of the keys before $mod i3 handles it as a the $mod+left bind.
