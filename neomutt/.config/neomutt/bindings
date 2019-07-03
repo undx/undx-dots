@@ -1,0 +1,156 @@
+### vim:ft=muttrc:fdm=marker
+# -*- muttrc -*-
+
+## Accounts selection
+macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/home<enter><change-folder>!<enter>'
+macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/work<enter><change-folder>!<enter>'
+
+## notmuch tools
+
+# key bindings {{{
+
+# index {{{
+
+bind index g  noop
+bind pager g  noop
+bind index gg first-entry
+bind pager gg top
+bind index G  last-entry
+bind pager G  bottom
+
+bind index,pager \Ck sidebar-prev
+bind index,pager \Cj sidebar-next
+bind index,pager \Co sidebar-open
+bind index,pager \Cp sidebar-prev-new
+bind index,pager \Cn sidebar-next-new
+bind index,pager B sidebar-toggle-visible
+
+bind    index   -           collapse-thread
+bind    index   _           collapse-all
+
+bind editor <Tab> complete-query
+
+#
+# mailboxes are relative to folder variable
+# folders that should be checked regularly for new mail and showed in sidebar
+macro index gi "<change-folder>$my_spool<enter>"   "Go to Inbox"
+macro index ga "<change-folder>$my_archive<enter>" "Go to Archive"
+macro index gs "<change-folder>$my_sent<enter>"    "Go to Sent"
+macro index gd "<change-folder>$my_drafts<enter>"  "Go to Drafts"
+macro index gt "<change-folder>$my_trash<enter>"   "Go to Trash"
+
+# convenient change-folder macros
+macro index,pager ,i  "<change-folder>=inbox<enter>"      "Go to INBOX"
+macro index,pager ,s  "<change-folder>=sent<enter>"       "Go to sent"
+macro index,pager ,a  "<change-folder>=archive<enter>"    "Go to archive"
+macro index,pager ,f  "<change-folder>=famille<enter>"    "Go to famille"
+macro index,pager ,h  "<change-folder>=hosting<enter>"    "Go to hosting"
+macro index,pager ,x  "<change-folder>=search<enter>"     "Go to searches"
+macro index,pager ,wa "<change-folder>=work/altic<enter>" "Go to work/altic"
+macro index,pager ,mf "<change-folder>=ml/freebsd<enter>" "Go to ml/freebsd"
+macro index,pager ,mm "<change-folder>=ml/mutt<enter>"    "Go to ml/mutt"
+macro index,pager ,mo "<change-folder>=ml/openbsd<enter>" "Go to ml/openbsd"
+macro index,pager ,mr "<change-folder>=ml/rails<enter>"   "Go to ml/rails"
+macro index,pager ,mu "<change-folder>=ml/ruby<enter>"    "Go to ml/ruby"
+macro index,pager ,mv "<change-folder>=ml/vim<enter>"     "Go to ml/vim"
+
+# macro index s "<pipe-message>cat > ~/desktop/"  "save message as"
+# macro index,pager y "<enter-command>unset trash\n <delete-message>" "gmail archive message"
+# macro index,pager d "<enter-command>set trash=\"imaps://imap.googlemail.com/[gmail]/bin\"\n <delete-message>" "gmail delete message"
+# macro index,pager gi "<change-folder>=inbox<enter>" "go to inbox"
+
+# macro index d "<save-message>+private/trash<enter>" "move message to the trash"
+# macro index s "<save-message>+private/spam<enter>" "mark message as spam"
+
+# mark all as read
+# macro index \cr "t~u<enter><tag-prefix><clear-flag>n<untag-pattern>.<enter>" "mark all messages as read"
+
+# sync email
+macro index,pager <f5> "<shell-escape>mbsync -a<enter>"           "run offlineimap to sync all mail"
+macro index,pager <f6> "<shell-escape>offlineimap -qf inbox<enter>" "run offlineimap to sync inbox"
+
+# copy/move dialogs
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+macro generic     ,r ":source ~/.config/neomutt/neomuttrc<enter>" "reload configuration"
+
+# search with notmuch
+macro index,pager <f8> \
+      "<enter-command>unset wait_key<enter><shell-escape>~/bin/notmuch-mutt-rb -o ~/.mail/gmail/search<enter><change-folder-readonly>+search<enter>" \
+      "notmuch: search mail"
+macro index,pager <f9> \
+      "<enter-command>unset wait_key<enter><enter-command>unignore message-id<enter><pipe-message>~/bin/notmuch-mutt-rb -o ~/.mail/gmail/search -t<enter><change-folder-readonly>+search<enter><enter-command>set wait_key<enter>" \
+      "notmuch: reconstruct thread"
+
+# }}}
+# pager {{{
+
+# bind pager \# noop
+# bind pager k  previous-line
+# bind pager j  next-line
+# bind pager gg top
+# bind pager g  bottom
+#
+# bind pager r  group-reply
+# bind pager n  search-opposite
+#
+# macro pager \cu "|urlview<enter>" "call urlview to open links"
+#
+macro pager \CB "|rofi -dmenu<enter>" "call urlview to open links"
+
+# macro pager s "<pipe-message>cat > ~/desktop/"  "save message as"
+
+# }}}
+# compose {{{
+
+# bind compose p postpone-message
+
+# }}}
+# attachment {{{
+
+# view, god dammit!
+bind attach <space>  view-mailcap
+
+# }}}
+# "open in vim" {{{
+
+# macro index,pager v "|vim -c 'setlocal ft=mail' -c 'setlocal buftype=nofile' -<enter>"              "open in vim"
+# macro index,pager m "|mvim -c 'setlocal ft=mail' -c 'setlocal buftype=nofile' - >/dev/null<enter>"  "open in macvim"
+
+# }}}
+
+# }}}
+
+
+# from the net ...
+
+# `if mutt -v|head -1|egrep '1\.[0-4]|1\.5\.[0-5][^0-9]' >/dev/null; then echo set alternates=; else echo alternates; fi` "^((tpope|root)@`hostname`(\.simpson)?|tpope@(tpope\.us|sexygeek\.us)|tim[p]ope@sbcglobal\.net|(tpope|root|tim)@sexygeek\.org|(kstrp00|timothy\.pope)@tamuk\.edu|tim[a-z]*\.pope@jmwaller\.com|(skilled|talented|gifted)@cunn\.iling\.us|cunn@iling\.us|[a-za-z0-9_.%-]+@(rebelongto\.us|tpope\.info|tpope\.net))$"
+# set`[ -d "$home/.smime/certificates" ] && " smime_default_key=$(hostname).pem"`
+# set`[ -x /usr/bin/muttprint ] && echo " print_command=muttprint"`
+# set`[ -d "$home/.mutt_cache" ] && echo " header_cache=~/.mutt_cache message_cachedir=~/.mutt_cache"`
+
+
+
+## macro compose b "\
+# :set content_type='multipart/alternative; boundary=aalc9kt9j5desrqtrarou6vdbzdhe3cn'\
+# <pipe-message> pandoc --template=multipart.text -t markdown -o $home/desktop/multipartmessage<enter>\
+# <pipe-message> pandoc --template=multipart.html --standalone -t html >> $home/desktop/multipartmessage<enter>"
+
+# set display_filter=$home/scripts/createalias.sh # filters new messages through a shell script that automatically generates a mutt alias for new senders
+
+#
+#
+
+
+#######################################################################
+# macros #
+#######################################################################
+#set meta_key = yes
+#macro index       ,m "<limit>!(~N|~O)<enter><collapse-all><limit>all<enter>"
+#macro index,pager y "<enter-command>unset trash\n <delete-message>" "Gmail archive message"
+#macro index,pager  S "<save-message>=[Gmail]/Spam<enter>"      "mark message as spam"
+
+#macro compose I "<enter-command>set ispell=$my_spell_en<enter><ispell><enter-command>set ispell=$my_spell_fr<enter>" "Spell check in English"
+#macro attach S  "<save-entry><kill-line>~/Desktop/<enter>y" "Save to desktop"
+#

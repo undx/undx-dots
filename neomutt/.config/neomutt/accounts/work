@@ -1,0 +1,41 @@
+# vim: filetype=muttrc
+# -*- muttrc -*-
+source reset # reset all before
+#
+set header_cache     = ~/.cache/neomutt/work/headers
+set message_cachedir = ~/.cache/neomutt/work/bodies
+set my_work_user     = "`pass Work/Okta/username`"
+set my_work_pass     = "`pass Work/Okta/password`"
+set realname         = "`pass Work/Outlook/realname`"
+set from             = "`pass Work/Okta/email`"
+set smtp_url         = "`pass Work/Outlook/smtp_url`"
+set smtp_pass        = $my_work_pass
+#
+set folder    = $MAILDIR/work    # top root folder containing all mails or "imaps://egallois@talend.com@outlook.office365.com/"
+set spoolfile = +Inbox           # spoolfile is the folder where your (unfiltered) e-mail arrives.
+set postponed = +Drafts          # mailbox to store postponed messages in
+set trash     = +"Deleted Items" # trash
+set record    = +"Sent Items"    # default location to save outgoing mail
+#
+set my_spool   = $spoolfile
+set my_archive = +Archive
+set my_trash   = +"Deleted<quote-char><space>Items"
+set my_sent    = +"Sent<quote-char><space>Items"
+set my_drafts  = $postponed
+#
+# mailboxes are relative to folder variable
+# folders that should be checked regularly for new mail and showed in sidebar
+mailboxes +Inbox \
+          +Inbox/github \
+          +Inbox/IT \
+          +Inbox/RH \
+          +Inbox/Team \
+          +Archive \
+          +"Sent Items" \
+          +Drafts \
+          +"Deleted Items"\
+          +"Junk Email" \
+#
+# work specific key bindings
+# Mailboxes - standard bindings: (i)nbox, (a)rchive, (s)ent, (d)rafts, (t)rash.
+#
