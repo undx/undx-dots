@@ -62,6 +62,10 @@ if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
 else
     eval $(gpg-agent --daemon)
 fi
+################
+# Mail related #
+################
+export MAILDIR=$HOME/.mail
 ######################
 # LD additional libs #
 ######################
@@ -104,9 +108,9 @@ echo "[env] compiling resources"
 if [ -f ~/.Xresources ]; then
     xrdb ~/.Xresources
 fi
-################
+####################################################################################
 # get rid of `Couldn't connect to accessibility bus: Failed to connect to socket...`
-################
+####################################################################################
 export NO_AT_BRIDGE=1
 ##############################
 # Other stuff - Work related #
