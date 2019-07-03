@@ -1,6 +1,6 @@
 # vim: filetype=muttrc
 # -*- muttrc -*-
-source reset # reset all before
+#source reset # reset all before
 #
 set header_cache         = ~/.cache/neomutt/home/headers
 set message_cachedir     = ~/.cache/neomutt/home/bodies

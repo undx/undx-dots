@@ -1,9 +1,14 @@
 
 * MUA Configuration
 
+  My emails live in =$HOME/.mail=. I've two accounts (subfolders):
+  - =work= : Outlook 365 Work account.
+  - =home= : My personal gmail account.
+
 ** Installation
 *** Arch
     : yaourt -S neomutt notmuch isync pass gnupg
+
 
 ** secrets
   gpg --gen-key

@@ -1,6 +1,6 @@
 # vim: filetype=muttrc
 # -*- muttrc -*-
-source reset # reset all before
+#source reset # reset all before
 #
 set header_cache     = ~/.cache/neomutt/work/headers
 set message_cachedir = ~/.cache/neomutt/work/bodies
@@ -26,15 +26,12 @@ set my_drafts  = $postponed
 # mailboxes are relative to folder variable
 # folders that should be checked regularly for new mail and showed in sidebar
 mailboxes +Inbox \
-          +Inbox/github \
-          +Inbox/IT \
-          +Inbox/RH \
-          +Inbox/Team \
           +Archive \
-          +"Sent Items" \
           +Drafts \
+          +"Sent Items" \
           +"Deleted Items"\
           +"Junk Email" \
+          +Calendar
 #
 # work specific key bindings
 # Mailboxes - standard bindings: (i)nbox, (a)rchive, (s)ent, (d)rafts, (t)rash.
