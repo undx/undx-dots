@@ -14,7 +14,7 @@
 #endif
 
 !!!!! Solarized light (|dark)
-#include "./Dropbox/undx/config/xresources/solarized-Xresources.light"
+#include ".xresources/solarized-Xresources.light"
 !
 !##############!
 !### Colors ###!
