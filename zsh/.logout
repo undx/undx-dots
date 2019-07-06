@@ -1,0 +1,3 @@
+echo "[session] login out..."       >> ~/.xsession-errors
+echo "[session] killing gpg-agent." >> ~/.xsession-errors
+gpgconf --kill gpg-agent

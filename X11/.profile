@@ -47,9 +47,9 @@ fi
 #######
 # GPG #
 #######
-echo GPG config
+echo "[GPG] config"
 # setting default key
-#export GPGKEY=D8FC66D2
+export GPGKEY=ACB4643F83465C41CECEBE8C2FD36EAAF03F8796
 #
 # In order for gpg to find gpg-agent, gpg-agent must be running, and there must be an env
 # variable pointing GPG to the gpg-agent socket. This little script, which must be sourced
@@ -70,7 +70,7 @@ export MAILDIR=$HOME/.mail
 ######################
 # LD additional libs #
 ######################
-echo Additional libraries to LD_LIBRARY_PATH
+echo "[LD] Additional libraries to LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH=/usr/lib/sap
 ##################
 # go environment #
