@@ -23,7 +23,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'endel/vim-github-colorscheme'
 Plug 'altercation/vim-colors-solarized'
 " utils
-Plug 'junegunn/fzf',  { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/syntastic'
 Plug 'jremmen/vim-ripgrep'

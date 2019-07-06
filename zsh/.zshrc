@@ -86,10 +86,7 @@ zplug "agkozak/zsh-z"
 # ghc - The branch compare page
 # ghp - Create PR from current branch in shell (very useful if you just pushed this branch)
 zplug 'ltj/gitgo'
-# fzf-git
-# git checkout **
-zplug "hschne/fzf-git"
-# 
+#
 zplug 'marzocchi/zsh-notify'
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -156,6 +153,7 @@ abbrev-alias -g ctal="~/Code/Talend/"
 alias ls="ls --color=auto"
 alias ll="ls -l"
 alias la="ls -la"
+alias lh="ls -lah"
 alias  l="ls -1"
 # neovim
 if type nvim > /dev/null 2>&1; then
@@ -179,7 +177,9 @@ export GPG_TTY=$(tty)
 #
 # fzf init
 #
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/fzf-extras.zsh
 #
 # work related
 #
