@@ -7,8 +7,10 @@ if [ ! -d "$TARGET" ]; then
 fi
 # symlink to sensible config files
 cd ~/Dropbox/undx/private/
-stow -v personal -t $TARGET
-stow -v work     -t $TARGET
+stow -v home -t $TARGET
+mkdir $TARGET/.m2
+mkdir $TARGET/.ivy2
+stow -v work -t $TARGET
 # fix some permissions
 chmod -R go-rwx ~/.authinfo
 chmod -R go-rwx ~/.gnupg

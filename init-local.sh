@@ -23,7 +23,10 @@ stow -v$VERBOSE emacs.d -t $TARGET
 #
 stow -v$VERBOSE git -t $TARGET
 stow -v$VERBOSE i3 -t $TARGET
+#
+mkdir -p $TARGET/.local/share/{applications,fonts,nemo}
 stow -v$VERBOSE local -t $TARGET
+#
 stow -v$VERBOSE media -t $TARGET
 # mutt
 stow -v$VERBOSE neomutt -t $TARGET
