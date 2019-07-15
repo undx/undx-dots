@@ -7,7 +7,7 @@
 
 ** Installation
 *** Arch
-    : yaourt -S neomutt notmuch isync pass gnupg
+    : yaourt -S neomutt notmuch isync pass gnupg w3m
 
 
 ** secrets
