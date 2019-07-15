@@ -28,7 +28,7 @@ image/*; sxiv %s;
 audio/*; xdg-open %s
 # PDF
 application/pdf; zathura %s;
-application/pdf; pdftotext -fixed 78 -enc UTF-8 %s -; copiousoutput;
+application/pdf; pdftotext -layout %s -; copiousoutput;
 # Archive files
 application/zip             ; unzip -l %s      ; copiousoutput;
 application/x-zip-compressed; unzip -l %s      ; copiousoutput;
@@ -36,5 +36,6 @@ application/x-tar-gz        ; tar tvzf %s 2>&- ; copiousoutput;
 application/x-bzip          ; tar tvjf %s 2>&- ; copiousoutput;
 # MS machin-truc
 application/msword;  xdg-open %s
-application/msword;  antiword %s; copiousoutput;
 application/msexcel; xdg-open %s
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; pandoc --from docx --to markdown %s; copiousoutput
+application/vnd.oasis.opendocument.text; pandoc --from odt --to markdown %s; copiousoutput
