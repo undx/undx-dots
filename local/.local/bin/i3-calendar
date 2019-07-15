@@ -1,0 +1,52 @@
+#! /bin/sh
+
+# [calendar]
+# command=$SCRIPT_DIR/calendar
+# interval=1
+# LABEL= 
+# DATEFMT=+%H:%M:%S
+# # SHORTFMT=+%H:%M:%S
+# HEIGHT=180
+# WIDTH=220
+
+# Add for_window [class="Yad"] floating enable to your i3 config file. Unfortunately this is neccessary because of a bug in yad. You may skip this step if you want to open the calendar popup as a normal tile instead.
+
+WIDTH=${WIDTH:-200}
+HEIGHT=${HEIGHT:-200}
+DATEFMT=${DATEFMT:-"+%d-%m-%Y %H:%M:%S"}
+SHORTFMT=${SHORTFMT:-"+%H:%M:%S"}
+
+OPTIND=1
+while getopts ":f:W:H:" opt; do
+    case $opt in
+        f) DATEFMT="$OPTARG" ;;
+        W) WIDTH="$OPTARG" ;;
+        H) HEIGHT="$OPTARG" ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2
+            exit 1
+            ;;
+        :)
+            echo "Option -$OPTARG requires an argument." >&2
+            exit 1
+            ;;
+    esac
+done
+
+case "$BLOCK_BUTTON" in
+  1|2|3)
+
+	# the position of the upper left corner of the popup
+	posX=$(($BLOCK_X - 55))
+	posY=$(($BLOCK_Y + 17))
+
+	i3-msg -q "exec yad --calendar --show-weeks \
+        --width=$WIDTH --height=$HEIGHT \
+	    --undecorated --fixed \
+	    --close-on-unfocus --no-buttons \
+	    --posx=$posX --posy=$posY \
+	    > /dev/null"
+esac
+echo "$LABEL$(date "$DATEFMT")"
+echo "$LABEL$(date "$SHORTFMT")"
+

@@ -45,7 +45,7 @@ set_from_resource $col15 color15 #000000
 #################################################
 # fonts #
 ##################################################
-font pango:Ubuntu Mono, FontAwesome, 16
+font pango: Ubuntu Mono, Font Awesome 5 Free 16
 ##################################################
 # Window Decorations Colors #
 # -----
@@ -66,33 +66,32 @@ client.background       #ffffff
 
 # top bar
 bar {
-    id bar-top
+  id bar-top
     position top
-    status_command i3status  -c ~/.config/i3/i3status.conf
+    status_command SCRIPT_DIR=/usr/libexec/i3blocks i3blocks -c ~/.config/i3/i3blocks-top.conf
     tray_output primary
-    separator_symbol ":|:"
+    separator_symbol ":"
     workspace_buttons  yes
-    font pango:FontAwesome 14, Ubuntu Mono 14
-    # mode dock ?
-    # modifier None ?
+# mode dock ?
+# modifier None ?
     colors {
-           background #000000
-           separator #666666
-           statusline #EEEEEE
-           #                 <border> <backgd> <text>
-           focused_workspace #111111  #111111  #d65d0e
-           active_workspace   #333333 #5f676a #ffffff
-           inactive_workspace #333333 #222222 #888888
-           urgent_workspace   #2f343a #900000 #ffffff
-           binding_mode       #2f343a #900000 #ffffff
-           }
+      background #000000
+        separator #666666
+        statusline #EEEEEE
+#                 <border> <backgd> <text>
+        focused_workspace #111111  #111111 #d65d0e
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+        binding_mode       #2f343a #900000 #ffffff
+    }
 }
 # bottom bar
 bar {
     id bar-bottom
     position bottom
-    status_command i3blocks
-    font pango:FontAwesome 14, Ubuntu Mono 14
+    status_command i3blocks -c ~/.config/i3/i3blocks-bottom.conf
+    workspace_buttons no
 }
 ##################################################
 # I3 Gaps
@@ -154,8 +153,10 @@ for_window [window_role="pop-up"]      floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [title="Preferences$"]      floating enable
 for_window [class="(?i)mplayer"]       floating enable
-for_window [class="pavucontrol"]       floating enable
+for_window [class="Pavucontrol"]       floating enable
 for_window [class="angrysearch"]       floating enable, resize set 1000 800, move position center
+for_window [class="Yad"]               floating enable
+
 # file chooser
 for_window [window_role="GtkFileChooserDialog"] resize set 1000 800, move position center
 # gimp
@@ -197,6 +198,8 @@ assign [title="Zoom.-.Pro.Account"] $ws_zoom
 focus_follows_mouse yes
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier Mod1
+# set popups during fullscreen mode
+popup_during_fullscreen smart
 ##################################################
 # Key bindings
 ##################################################
@@ -342,9 +345,9 @@ bindsym $mod+Delete       exec $term -n htop -e htop
 # sound management
 # using pulseaudio
 bindsym Scroll_Lock          exec pamixer -c 0 sset Master 5- unmute
-bindsym Pause                exec amixer -c 0 sset Master 5+ unmute
-bindsym $mod+Scroll_Lock     exec amixer -q set Master toggle
-bindsym XF86AudioMute        exec amixer -q set Master toggle
+bindsym Pause                exec pamixer -c 0 sset Master 5+ unmute
+bindsym $mod+Scroll_Lock     exec pamixer -q set Master toggle
+bindsym XF86AudioMute        exec pamixer -q set Master toggle
 #  pactl -- set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -10% && killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 -- +10% && killall -SIGUSR1 i3status
