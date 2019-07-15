@@ -4,12 +4,12 @@ password-source: pass
 password-name: Work/Jira/emmanuel_g
 
 project: TDI
+
 custom-commands:
   - name: print-project
     help: print the name of the configured project
     script: "echo $JIRA_PROJECT"
 
-custom-commands:
   - name: mine
     help: display issues assigned to me
     script: |-
@@ -21,8 +21,6 @@ custom-commands:
           {{jira}} list --template table --query "resolution = unresolved and assignee=currentuser() ORDER BY priority asc, created"
       fi
 
-
-custom-commands:
   - name: sprint
     help: display issues for active sprint
     script: |-
