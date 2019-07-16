@@ -1,0 +1,8 @@
+[Nemo Action]
+Name=Convert HEIC to PNG
+Comment=Convert HEIC files to PNG
+Exec=<convert-heic %F png>
+Quote=single
+Icon-Name=bug-buddy
+Selection=Any
+Extensions=heic

@@ -1,0 +1,8 @@
+[Nemo Action]
+Name=Convert HEIC to JPG
+Comment=Convert HEIC files to Jpeg
+Exec=<convert-heic %F jpg>
+Quote=single
+Icon-Name=bug-buddy
+Selection=Any
+Extensions=heic

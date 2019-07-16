@@ -1,0 +1,3 @@
+#!/bin/sh
+
+heif-convert $1 ${1/%.heic/.$2}
