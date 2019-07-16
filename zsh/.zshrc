@@ -65,10 +65,8 @@ fpath=($ZSH_HOME/functions/**/ $fpath)
 #autoload -U $ZSH_HOME/functions/**/*(.:t)
 
 # plugins with zplug
-# $ export ZPLUG_HOME=/path/to/.zplug
-# $ git clone https://github.com/zplug/zplug $ZPLUG_HOME
-#
-source ~/.zplug/init.zsh
+# $ yay -S zplug
+source /usr/share/zsh/scripts/zplug/init.zsh
 #
 # plugins
 #
