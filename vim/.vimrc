@@ -47,7 +47,7 @@ colorscheme solarized
 call togglebg#map("<F5>")
 "colorscheme vim-material
 
-set undodir=$TMP/vim
+set undodir=$TMP/vim/undo
 set backupdir=$TMP/vim/backup
 set directory=$TMP/vim
 set hidden                     " buffer switching w/o saving
@@ -59,6 +59,7 @@ set showmatch                  " display matching pair
 set noshowmode                 " don't show mode.
 set autoread                   " refresh when a file is changed from the outside
 set autochdir
+set clipboard+=unnamed
 set browsedir=buffer           " browse directory of the current buffer
 set encoding=utf-8             " default encoding
 set fileencoding=utf-8         " default encoding for new files
