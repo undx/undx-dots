@@ -364,6 +364,7 @@ bindsym $mod+x           exec rofi -show run    -p "undx run" -location 2
 bindsym $mod+space       exec rofi -show window -p "undx switch window"
 bindsym $mod+Shift+space exec rofi -show combi
 bindsym $mod+j           exec jira -u emmanuel_g list -a emmanuel_g|rofi -dmenu -i -p "undx jira"
+bindsym $mod+p           exec gopass ls --flat | rofi -dmenu -p "undx gopass" | xargs --no-run-if-empty gopass show -f | head -n 1 | xdotool type --clearmodifiers --file -
 
 #   ps1="$(grep "\S" "$tmpfile" | tail -n 1 | sed 's/^\s*//' |  cut -d' ' -f1)"
 

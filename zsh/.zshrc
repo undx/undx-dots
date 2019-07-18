@@ -1,3 +1,11 @@
+#
+# Prepend all directories in $ZSH_DIR/functions to the fpath
+fpath=($ZSH_HOME/functions/**/ $ZSH_HOME/completions/**/ $fpath)
+# and autoload all files in $ZSH_DIR/functions
+#autoload -U $ZSH_HOME/functions/**/*(.:t)
+#
+#
+#
 setopt histignoredups
 #
 typeset -U path
@@ -57,13 +65,7 @@ setprompt() {
   RPROMPT=$'${vcs_info_msg_0_}'
 }
 setprompt
-
 #
-# Prepend all directories in $ZSH_DIR/functions to the fpath
-fpath=($ZSH_HOME/functions/**/ $fpath)
-# and autoload all files in $ZSH_DIR/functions
-#autoload -U $ZSH_HOME/functions/**/*(.:t)
-
 # plugins with zplug
 # $ yay -S zplug
 source /usr/share/zsh/scripts/zplug/init.zsh
@@ -171,7 +173,6 @@ if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
   export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
 export GPG_TTY=$(tty)
-
 #
 # fzf init
 #
