@@ -1,8 +1,9 @@
+export ZSH_HOME=~/.zsh
 #
 # Prepend all directories in $ZSH_DIR/functions to the fpath
 fpath=($ZSH_HOME/functions/**/ $ZSH_HOME/completions/**/ $fpath)
 # and autoload all files in $ZSH_DIR/functions
-#autoload -U $ZSH_HOME/functions/**/*(.:t)
+autoload -Uz $ZSH_HOME/functions/**/*(.:t)
 #
 #
 #
@@ -18,7 +19,6 @@ setopt COMPLETE_ALIASES
 # complete with case insensitive:
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 #
-export ZSH_HOME=~/.zsh
 source $ZSH_HOME/zle.zsh
 
 # by default: export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
