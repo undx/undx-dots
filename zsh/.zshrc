@@ -5,8 +5,6 @@ fpath=($ZSH_HOME/functions/**/ $ZSH_HOME/completions/**/ $fpath)
 # and autoload all files in $ZSH_DIR/functions
 autoload -Uz $ZSH_HOME/functions/**/*(.:t)
 #
-#
-#
 setopt histignoredups
 #
 typeset -U path
@@ -18,6 +16,11 @@ setopt COMPLETE_ALIASES
 #
 # complete with case insensitive:
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# mpv
+zstyle ':completion:*:*:mpv:*' file-patterns '*.(#i)(flv|mp4|webm|mkv|wmv|mov|avi|mp3|ogg|wma|flac|wav|aiff|m4a|m4b|m4v|gif|ifo)(-.) *(-/):directories' '*:all-files'
+zstyle ':completion:*:*:mpv:*' group-name ''
+#
+#
 #
 source $ZSH_HOME/zle.zsh
 
