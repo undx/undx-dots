@@ -27,6 +27,7 @@ stow -v$VERBOSE i3 -t $TARGET
 mkdir -p $TARGET/.local/share/{applications,fonts,nemo}
 stow -v$VERBOSE local -t $TARGET
 #
+mkdir -p $TARGET/.config/mpv/scripts
 stow -v$VERBOSE media -t $TARGET
 # mutt
 stow -v$VERBOSE neomutt -t $TARGET
