@@ -17,7 +17,8 @@
 # are both specified.
 # HTML content
 text/html; w3m -I%{charset} -O'UTF-8' -T text/html ; copiousoutput;
-text/html; xdg-open %s
+text/html; qutebrowser %s; needsterminal; nametemplate=%s.html
+#text/html; xdg-open %s
 # convert html to markdown for easy reading
 #text/html; pandoc -f html -t markdown; copiousoutput; compose=vim %s
 # Calendar
