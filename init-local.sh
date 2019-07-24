@@ -28,6 +28,7 @@ mkdir -p $TARGET/.local/share/{applications,fonts,nemo}
 stow -v$VERBOSE local -t $TARGET
 #
 mkdir -p $TARGET/.config/mpv/scripts
+mkdir -p $TARGET/.config/zathura
 stow -v$VERBOSE media -t $TARGET
 # mutt
 stow -v$VERBOSE neomutt -t $TARGET
@@ -37,6 +38,8 @@ stow -v$VERBOSE vim -t $TARGET
 stow -v$VERBOSE X11 -t $TARGET
 stow -v$VERBOSE zsh -t $TARGET
 stow -v$VERBOSE vim -t $TARGET
+mkdir -p $TARGET/.config/qutebrowser
+stow -v$VERBOSE www -t $TARGET
 
 # xkb - install my custom keyboard
 sudo stow -v$VERBOSE xkb -t /usr/share/X11/xkb/symbols/
