@@ -48,10 +48,10 @@
 !!! *foreground: #ffffff
 !!! *background: #000000
 
-!###############!
-!### Xcursor ###!
-!###############!
- !*.alpha:0; 
+!#############!
+!### Trans ###!
+!#############!
+ !*.alpha:0;
 !#####################!
 !### XDefault font ###!
 !#####################!
@@ -64,8 +64,8 @@ rofi.font: Ubuntu Mono 18
 !###############!
 !### Xcursor ###!
 !###############!
-Xcursor.size: 12
-Xcursor.theme: DMZ-Black
+Xcursor.theme: ComixCursors-White
+Xcursor.size: 48
 !###########!
 !### Xft ###!
 !###########!
