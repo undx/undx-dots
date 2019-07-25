@@ -3,7 +3,8 @@
 	email = egallois@talend.com
 
 [core]
-	editor = emacsclient -a runemacs '%*'
+	editor = gvim '%*'
+#	editor = emacsclient -a runemacs '%*'
 	autocrlf = input
 	longpaths = true
 	# Don't consider trailing space change as a cause for merge conflicts
