@@ -343,14 +343,15 @@ bindsym $mod+Shift+Home  exec $term -n ranger -e ranger
 bindsym $mod+Shift+Delete exec $term -n htop -e htop
 bindsym $mod+Delete       exec $term -n htop -e htop
 # sound management
-# using pulseaudio
-bindsym Scroll_Lock          exec pamixer -c 0 sset Master 5- unmute
-bindsym Pause                exec pamixer -c 0 sset Master 5+ unmute
-bindsym $mod+Scroll_Lock     exec pamixer -q set Master toggle
-bindsym XF86AudioMute        exec pamixer -q set Master toggle
-#  pactl -- set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -10% && killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 -- +10% && killall -SIGUSR1 i3status
+set $volumemute pamixer -t
+set $volumeup   pamixer -i 5 -u
+set $volumedown pamixer -d 5 -u
+bindsym Scroll_Lock          exec --no-startup-id $volumedown
+bindsym Pause                exec --no-startup-id $volumeup
+bindsym $mod+Scroll_Lock     exec --no-startup-id $volumemute
+bindsym XF86AudioMute        exec --no-startup-id $volumemute
+bindsym XF86AudioLowerVolume exec --no-startup-id $volumedown
+bindsym XF86AudioRaiseVolume exec --no-startup-id $volumeup
 #
 # set you own variable names or override values of variables. It works by replacing text, like the c pre-processor, and has no concept other than strings.
 set $dmenu_font 'Ubuntu Mono:bold:pixelsize=20'
@@ -367,20 +368,6 @@ bindsym $mod+j           exec jira -u emmanuel_g list -a emmanuel_g|rofi -dmenu 
 bindsym $mod+p           exec gopass ls --flat | rofi -dmenu -p "undx gopass" | xargs --no-run-if-empty gopass show -f | head -n 1 | xdotool type --clearmodifiers --file -
 
 #   ps1="$(grep "\S" "$tmpfile" | tail -n 1 | sed 's/^\s*//' |  cut -d' ' -f1)"
-
-# increase / shrink windows
-#
-#bindsym $mod+Shift+u		exec --no-startup-id i3resize down
-#bindsym $mod+Shift+i		exec --no-startup-id i3resize up
-#bindsym $mod+Shift+y		exec --no-startup-id i3resize left
-
-
-# shortcut to show what's inside clipboard / primary selection
-# dropdown calc F11
-# dropdown term F12
-
-
-
 
 
 #bindsym $mod+b			bar mode toggle
@@ -486,7 +473,7 @@ mode "$mode_gaps_outer" {
 ##################################################
 # exec_always : executed when reloading or restarting
 # system
-exec_always --no-startup-id setxkbmap -layout ux -option ctrl:nocaps -option compose:menu
+exec_always --no-startup-id setxkbmap -layout ux -option ctrl:nocaps -option compose:rctl
 exec_always --no-startup-id pgrep xcape || xcape -e 'Shift_L=Shift_L|parenleft;Shift_R=Shift_R|parenright;Control_L=Escape'
 exec_always --no-startup-id pgrep gnome-keyring-daemon || gnome-keyring-daemon
 exec_always --no-startup-id pgrep nm-applet || nm-applet
