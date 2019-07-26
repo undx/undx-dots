@@ -39,6 +39,7 @@ stow -v$VERBOSE X11 -t $TARGET
 stow -v$VERBOSE zsh -t $TARGET
 stow -v$VERBOSE vim -t $TARGET
 mkdir -p $TARGET/.config/qutebrowser
+mkdir -p $TARGET/.local/share/qutebrowser
 stow -v$VERBOSE www -t $TARGET
 
 # xkb - install my custom keyboard

@@ -19,6 +19,7 @@
 ## Always restore open sites when qutebrowser is reopened.
 ## Type: Bool
 # c.auto_save.session = False
+c.auto_save.session = True
 
 ## Backend to use to display websites. qutebrowser supports two different
 ## web rendering engines / backends, QtWebKit and QtWebEngine. QtWebKit
@@ -42,6 +43,22 @@
 ## the mapping is ignored.
 ## Type: Dict
 # c.bindings.key_mappings = {'<Ctrl-[>': '<Escape>', '<Ctrl-6>': '<Ctrl-^>', '<Ctrl-M>': '<Return>', '<Ctrl-J>': '<Return>', '<Shift-Return>': '<Return>', '<Enter>': '<Return>', '<Shift-Enter>': '<Return>', '<Ctrl-Enter>': '<Ctrl-Return>'}
+
+# loading color from .Xresources
+import subprocess
+def read_xresources(prefix):
+    props = {}
+    x = subprocess.run(['xrdb', '-query'], stdout=subprocess.PIPE)
+    lines = x.stdout.decode().split('\n')
+    for line in filter(lambda l : l.startswith(prefix), lines):
+        prop, _, value = line.partition(':\t')
+        props[prop] = value
+    return props
+xresources = read_xresources('*')
+# now available as xresources variable
+# for using like c.colors.statusbar.normal.bg = xresources['*background']
+c.colors.statusbar.normal.bg = xresources['*background']
+
 
 ## Background color of the completion widget category headers.
 ## Type: QssColor
@@ -548,7 +565,7 @@
 ## Default encoding to use for websites. The encoding must be a string
 ## describing an encoding such as _utf-8_, _iso-8859-1_, etc.
 ## Type: String
-# c.content.default_encoding = 'iso-8859-1'
+c.content.default_encoding = 'utf-8'
 
 ## Allow websites to share screen content. On Qt < 5.10, a dialog box is
 ## always displayed, even if this is set to "true".
@@ -860,7 +877,7 @@
 
 ## Encoding to use for the editor.
 ## Type: Encoding
-# c.editor.encoding = 'utf-8'
+c.editor.encoding = 'utf-8'
 
 ## Font used in the completion categories.
 ## Type: Font
@@ -1160,6 +1177,7 @@
 ## running QtWebEngine on Wayland.
 ## Type: String
 # c.qt.force_platform = None
+c.qt.force_software_rendering = 'chromium'
 
 ## Force software rendering for QtWebEngine. This is needed for
 ## QtWebEngine to work with Nouveau drivers and can be useful in other
@@ -1315,6 +1333,7 @@
 ## Open new tabs (middleclick/ctrl+click) in the background.
 ## Type: Bool
 # c.tabs.background = False
+c.tabs.background = True
 
 ## Mouse button with which to close tabs.
 ## Type: String
@@ -1570,6 +1589,7 @@
 ## Available zoom levels.
 ## Type: List of Perc
 # c.zoom.levels = ['25%', '33%', '50%', '67%', '75%', '90%', '100%', '110%', '125%', '150%', '175%', '200%', '250%', '300%', '400%', '500%']
+c.zoom.levels = [x for x in range(20, 500, 5)]
 
 ## Number of zoom increments to divide the mouse wheel movements to.
 ## Type: Int
@@ -1870,4 +1890,23 @@
 # config.bind('Y', 'prompt-accept --save yes', mode='yesno')
 # config.bind('n', 'prompt-accept no', mode='yesno')
 # config.bind('y', 'prompt-accept yes', mode='yesno')
+
+###########################################################
+# extra config
+###########################################################
+##
+## key bindings
+##
+# config.bind(';h', 'set downloads.location.directory ~/ ;; hint links download')
+
+##
+## Userscripts
+##
+## qute code hint - userscript
+c.hints.selectors["code"] = [
+    # Selects all code tags whose direct parent is not a pre tag
+    ":not(pre) > code",
+    "pre"
+]
+config.bind(';c', 'hint code userscript code_select.py')
 

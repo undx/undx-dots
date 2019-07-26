@@ -1,0 +1,7 @@
+
+
+## Code hint
+
+https://github.com/LaurenceWarne/qute-code-hint
+
+: wget https://raw.githubusercontent.com/LaurenceWarne/qute-code-hint/master/code_select.py -O ~/.local/share/qutebrowser/userscripts/code_select.py
