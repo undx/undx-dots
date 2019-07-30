@@ -1,5 +1,8 @@
 * My scripts
 
+** qute-pass
+
+: yay -S python-tldextract
 
 ** Code hint yanking
 
