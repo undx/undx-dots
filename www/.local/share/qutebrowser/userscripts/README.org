@@ -1,7 +1,21 @@
+* My scripts
 
 
-## Code hint
+** Code hint yanking
 
-https://github.com/LaurenceWarne/qute-code-hint
+repository: https://github.com/LaurenceWarne/qute-code-hint
 
+Install script:
 : wget https://raw.githubusercontent.com/LaurenceWarne/qute-code-hint/master/code_select.py -O ~/.local/share/qutebrowser/userscripts/code_select.py
+For a better multi-line pasting:
+: yay -S python-pyperclip
+
+** format json
+
+repository: built in.
+additional package:
+: yay -Ss python-pygments
+
+** org-capture
+repository: https://github.com/alcah/qute-capture
+: yay -S python-pyorgmode

@@ -59,7 +59,6 @@ xresources = read_xresources('*')
 # for using like c.colors.statusbar.normal.bg = xresources['*background']
 c.colors.statusbar.normal.bg = xresources['*background']
 
-
 ## Background color of the completion widget category headers.
 ## Type: QssColor
 # c.colors.completion.category.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #888888, stop:1 #505050)'
@@ -881,39 +880,39 @@ c.editor.encoding = 'utf-8'
 
 ## Font used in the completion categories.
 ## Type: Font
-# c.fonts.completion.category = 'bold 10pt monospace'
+c.fonts.completion.category = 'bold 14pt monospace'
 
 ## Font used in the completion widget.
 ## Type: Font
-# c.fonts.completion.entry = '10pt monospace'
+c.fonts.completion.entry = '14pt monospace'
 
 ## Font used for the debugging console.
 ## Type: QtFont
-# c.fonts.debug_console = '10pt monospace'
+c.fonts.debug_console = '14pt monospace'
 
 ## Font used for the downloadbar.
 ## Type: Font
-# c.fonts.downloads = '10pt monospace'
+c.fonts.downloads = '14pt monospace'
 
 ## Font used for the hints.
 ## Type: Font
-# c.fonts.hints = 'bold 10pt monospace'
+c.fonts.hints = 'bold 14pt monospace'
 
 ## Font used in the keyhint widget.
 ## Type: Font
-# c.fonts.keyhint = '10pt monospace'
+c.fonts.keyhint = '14pt monospace'
 
 ## Font used for error messages.
 ## Type: Font
-# c.fonts.messages.error = '10pt monospace'
+c.fonts.messages.error = '14pt monospace'
 
 ## Font used for info messages.
 ## Type: Font
-# c.fonts.messages.info = '10pt monospace'
+c.fonts.messages.info = '14pt monospace'
 
 ## Font used for warning messages.
 ## Type: Font
-# c.fonts.messages.warning = '10pt monospace'
+c.fonts.messages.warning = '14pt monospace'
 
 ## Default monospace fonts. Whenever "monospace" is used in a font
 ## setting, it's replaced with the fonts listed here.
@@ -922,15 +921,15 @@ c.editor.encoding = 'utf-8'
 
 ## Font used for prompts.
 ## Type: Font
-# c.fonts.prompts = '10pt sans-serif'
+c.fonts.prompts = '14pt sans-serif'
 
 ## Font used in the statusbar.
 ## Type: Font
-# c.fonts.statusbar = '10pt monospace'
+c.fonts.statusbar = '14pt monospace'
 
 ## Font used in the tab bar.
 ## Type: QtFont
-# c.fonts.tabs = '10pt monospace'
+c.fonts.tabs = '14pt monospace'
 
 ## Font family for cursive fonts.
 ## Type: FontFamily
@@ -958,11 +957,11 @@ c.editor.encoding = 'utf-8'
 
 ## Default font size (in pixels) for regular text.
 ## Type: Int
-# c.fonts.web.size.default = 16
+c.fonts.web.size.default = 16
 
 ## Default font size (in pixels) for fixed-pitch text.
 ## Type: Int
-# c.fonts.web.size.default_fixed = 13
+c.fonts.web.size.default_fixed = 13
 
 ## Hard minimum font size (in pixels).
 ## Type: Int
@@ -1132,7 +1131,7 @@ c.editor.encoding = 'utf-8'
 ## Duration (in milliseconds) to show messages in the statusbar for. Set
 ## to 0 to never clear messages.
 ## Type: Int
-# c.messages.timeout = 2000
+# c.messages.timeout = 3000
 
 ## How to open links in an existing instance if a new one is launched.
 ## This happens when e.g. opening a link from a terminal. See
@@ -1251,7 +1250,7 @@ c.qt.force_software_rendering = 'chromium'
 
 ## Load a restored tab as soon as it takes focus.
 ## Type: Bool
-# c.session.lazy_restore = False
+c.session.lazy_restore = True
 
 ## Languages to use for spell checking. You can check for available
 ## languages and install dictionaries using scripts/dictcli.py. Run the
@@ -1563,6 +1562,24 @@ c.tabs.background = True
 ## `:open google qutebrowser`.
 ## Type: Dict
 # c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}'}
+c.url.searchengines = {
+   "DEFAULT": 'https://google.fr/search?q={}',
+  "az": 'https://www.amazon.fr/s?k={}',
+  "so": 'https://www.stackoverflow.com/search?q={}',
+   "j": 'https://jira.talendforge.org/browse/{}',
+   "d": 'https://duckduckgo.com/?q={}',
+   "e": 'https://www.ebay.fr/sch/{}',
+   "i": 'http://www.imdb.com/find?{}',
+   "r": 'https://www.reddit.com/r/{}',
+   "w": 'https://en.wikipedia.org/wiki/={}',
+   "y": 'https://www.youtube.com/results?search_query={}',
+   # translations
+   "tr" : 'https://translate.google.com/#view=home&op=translate&sl=auto&tl=fr&text={}',
+   "tef": 'https://translate.google.com/#view=home&op=translate&sl=en&tl=fr&text={}',
+   "tfe": 'https://translate.google.com/#view=home&op=translate&sl=fr&tl=en&text={}',
+   "tfp": 'https://translate.google.com/#view=home&op=translate&sl=fr&tl=pt&text={}',
+   "tpf": 'https://translate.google.com/#view=home&op=translate&sl=pt&tl=fr&text={}',
+}
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
