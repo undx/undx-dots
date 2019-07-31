@@ -38,3 +38,5 @@
 **/.vim/.netrwhist
 **/.vim/swap
 **/.vim/plugged
+# misc unwanted
+readability.html

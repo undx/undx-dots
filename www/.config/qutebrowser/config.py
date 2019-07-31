@@ -443,7 +443,7 @@ c.colors.statusbar.normal.bg = xresources['*background']
 
 ## Height (in pixels or as percentage of the window) of the completion.
 ## Type: PercOrInt
-# c.completion.height = '50%'
+c.completion.height = '30%'
 
 ## Minimum amount of characters needed to update completions.
 ## Type: Int
@@ -491,7 +491,7 @@ c.colors.statusbar.normal.bg = xresources['*background']
 
 ## Execute the best-matching command on a partial match.
 ## Type: Bool
-# c.completion.use_best_match = False
+c.completion.use_best_match = True
 
 ## A list of patterns which should not be shown in the history. This only
 ## affects the completion. Matching URLs are still saved in the history

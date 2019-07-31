@@ -1,8 +1,11 @@
 * My scripts
 
-** qute-pass
 
-: yay -S python-tldextract
+** External dependencies for default installation scripts 
+
+scripts: qute-pass, json, readability.
+deps:
+: yay -S python-tldextract python-readability-lxml python-pygments
 
 ** Code hint yanking
 
@@ -12,12 +15,6 @@ Install script:
 : wget https://raw.githubusercontent.com/LaurenceWarne/qute-code-hint/master/code_select.py -O ~/.local/share/qutebrowser/userscripts/code_select.py
 For a better multi-line pasting:
 : yay -S python-pyperclip
-
-** format json
-
-repository: built in.
-additional package:
-: yay -Ss python-pygments
 
 ** org-capture
 repository: https://github.com/alcah/qute-capture
