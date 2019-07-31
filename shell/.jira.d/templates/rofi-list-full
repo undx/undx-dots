@@ -1,0 +1,2 @@
+{{ range .issues }}{{ .key }}:[{{.fields.status.name | printf "%-10s"}}]{{ .fields.summary | printf "%-75s"}}({{ dateFormat "2006-01-02" .fields.updated}}){{ .fields.updated | age }})
+{{ end }}

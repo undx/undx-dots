@@ -1,0 +1,5 @@
+#!/bin/sh
+
+OISSUE=$(jira list -w emmanuel_g -t rofi-list|rofi -dmenu -i -p "undx jira"|sed -e's/:.*$//')
+
+

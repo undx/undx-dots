@@ -1,0 +1,2 @@
+{{ range .issues }}{{ .key }}: [{{.fields.status.name |regReplace "On hold" "HOLD" | regReplace "To be checked" "CHECK" | regReplace "ZOZOZ" "XX" |ToUpper| printf "%-10s"}}] {{ .fields.summary | printf "%-75s"}}({{ .fields.updated | age }})
+{{ end }}
