@@ -57,7 +57,7 @@ def read_xresources(prefix):
 xresources = read_xresources('*')
 # now available as xresources variable
 # for using like c.colors.statusbar.normal.bg = xresources['*background']
-c.colors.statusbar.normal.bg = xresources['*background']
+c.colors.statusbar.normal.bg = 'black'
 
 ## Background color of the completion widget category headers.
 ## Type: QssColor
@@ -925,11 +925,11 @@ c.fonts.prompts = '14pt sans-serif'
 
 ## Font used in the statusbar.
 ## Type: Font
-c.fonts.statusbar = '14pt monospace'
+c.fonts.statusbar = '12pt monospace'
 
 ## Font used in the tab bar.
 ## Type: QtFont
-c.fonts.tabs = '14pt monospace'
+c.fonts.tabs = '14pt Ubuntu'
 
 ## Font family for cursive fonts.
 ## Type: FontFamily
@@ -1250,7 +1250,7 @@ c.qt.force_software_rendering = 'chromium'
 
 ## Load a restored tab as soon as it takes focus.
 ## Type: Bool
-c.session.lazy_restore = True
+c.session.lazy_restore = False
 
 ## Languages to use for spell checking. You can check for available
 ## languages and install dictionaries using scripts/dictcli.py. Run the
@@ -1915,7 +1915,32 @@ c.zoom.levels = [x for x in range(20, 500, 5)]
 ## key bindings
 ##
 # config.bind(';h', 'set downloads.location.directory ~/ ;; hint links download')
-
+# search selected text
+config.bind(',f', 'open {primary}')
+config.bind(',F', 'open --tab {primary}')
+config.bind(',t', 'open --tab https://translate.google.com/#auto/fr/{primary}')
+# go up in url / site root
+config.bind('gu', 'navigate up')
+config.bind('gU', 'open {url:host}')
+# searching
+config.bind('<Ctrl-s>', 'set-cmd-text /', mode='normal')
+config.bind('<Ctrl-r>', 'set-cmd-text ?', mode='normal')
+config.bind('<Ctrl-s>', 'search-next', mode='command')
+config.bind('<Ctrl-r>', 'search-prev', mode='command')
+# hinting
+config.bind('<Ctrl-Space>', 'hint', mode='normal')
+config.bind('<Alt-s>', 'hint', mode='normal')
+# cycle config
+config.bind('tf', 'config-cycle -p -t statusbar.hide ;; config-cycle tabs.show always switching')
+config.bind('tt', 'config-cycle -p -t tabs.show always switching')
+config.bind('ts', 'config-cycle -p -t statusbar.hide')
+# play video with mpv
+config.bind(',v', 'spawn umpv {url}')
+config.bind(';v', 'hint links spawn umpv {hint-url}')
+config.bind(';V', 'hint --rapid links spawn umpv {hint-url}')
+config.bind(',y', 'spawn --userscript qute-youtube-dl {url}')
+config.bind(';xv', 'hint links spawn --userscript qute-youtube-dl {hint-url}')
+config.bind(';xV', 'hint --rapid links spawn --userscript qute-youtube-dl {hint-url}')
 ##
 ## Userscripts
 ##
@@ -1926,6 +1951,9 @@ c.hints.selectors["code"] = [
     "pre"
 ]
 config.bind(';c', 'hint code userscript code_select.py')
+##
+## qute-capture
+config.bind(',b', 'spawn --userscript qute-capture.py read')
 ##
 ## qute-pass
 config.bind('<z><l>',    'spawn --userscript qute-pass')
