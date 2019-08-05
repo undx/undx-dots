@@ -1,6 +1,6 @@
 rofi.terminal: st
-rofi.modi: window,run,drun,ssh,windowcd,keys
-rofi.combi-modi: window,run,drun,ssh,windowcd,keys
+rofi.modi: window,run,drun,ssh,windowcd,keys,calc
+rofi.combi-modi: window,run,drun,ssh,windowcd,keys,calc
 #rofi.modi:          combi
 rofi.font: Ubuntu Mono 16
 rofi.theme: undx.rasi

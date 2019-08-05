@@ -180,6 +180,7 @@ no_focus   [title="mpvfloat"]
 
 # Assign applications to specific workspaces
 assign [class="google-chrome*"] $ws1
+assign [class="qutebrowser*"] $ws1
 assign [class="Firefox"] $ws1
 assign [class="Iceweasel"] $ws1
 assign [class="Emacs"] $ws2
@@ -316,7 +317,7 @@ bindsym $mod+minus scratchpad show, floating toggle
 
 for_window [title="passwords.kdbx"] floating enable, move position center, border normal 2, move scratchpad
 # scratchpad terminal
-exec --no-startup-id "urxvt --class='ScratchPad'"
+exec --no-startup-id $term -c ScratchPad
 for_window [class="ScratchPad"] floating enable, resize set 1366 384, move position 0 18, move scratchpad
 bindsym F12 [class="ScratchPad"] scratchpad show
 
@@ -332,7 +333,7 @@ bindsym $mod+u [urgent=latest] focus
 #
 #
 # start a terminal
-bindsym $mod+Return       exec --no-startup-id st
+bindsym $mod+Return       exec --no-startup-id $term
 bindsym $mod+Shift+Return exec --no-startup-id i3-samedir
 # screenshot
 bindsym Print exec i3-screenshot
@@ -353,23 +354,12 @@ bindsym XF86AudioMute        exec --no-startup-id $volumemute
 bindsym XF86AudioLowerVolume exec --no-startup-id $volumedown
 bindsym XF86AudioRaiseVolume exec --no-startup-id $volumeup
 #
-# set you own variable names or override values of variables. It works by replacing text, like the c pre-processor, and has no concept other than strings.
-set $dmenu_font 'Ubuntu Mono:bold:pixelsize=20'
-set $dmenu_nbg  '#fdf6e3'
-set $dmenu_nfg  '#586c75'
-set $dmenu_sfg  '#fdf6e3'
-set $dmenu_sbg  '#b58900'
-set $dmenu_ui   -fn $dmenu_font -nb $dmenu_nbg -nf $dmenu_nfg -sf dmenu_sfg -sb $dmenu_sbg
-
 bindsym $mod+x           exec rofi -show run    -p "undx run" -location 2
 bindsym $mod+space       exec rofi -show window -p "undx switch window"
 bindsym $mod+Shift+space exec rofi -show combi
 bindsym $mod+j           exec rofi-jira
 bindsym $mod+p           exec gopass ls --flat | rofi -dmenu -p "undx gopass" | xargs --no-run-if-empty gopass show -f | head -n 1 | xdotool type --clearmodifiers --file -
-
-#   ps1="$(grep "\S" "$tmpfile" | tail -n 1 | sed 's/^\s*//' |  cut -d' ' -f1)"
-
-
+#
 #bindsym $mod+b			bar mode toggle
 bindsym $mod+Shift+b		floating toggle; sticky toggle; exec --no-startup-id hover left
 bindsym $mod+Shift+n		floating toggle; sticky toggle; exec --no-startup-id hover right
@@ -378,7 +368,7 @@ bindsym $mod+Shift+k		move up 30
 bindsym $mod+Shift+j		move down 30
 bindsym $mod+Shift+h		move left 30
 #bindsym $mod+o			sticky toggle
-bindsym $mod+F10			exec $term -name calcy -e bc -lq # ddspawn tmuxdd
+bindsym $mod+F10			exec $term -n calcy -e bc -lq # ddspawn tmuxdd
 bindsym $mod+F11			exec --no-startup-id ddspawn dropdowncalc -f mono:pixelsize=24
 
 #bindsym $mod+q			[con_id="__focused__" instance="^(?!dropdown_).*$"] kill
@@ -389,13 +379,14 @@ bindsym $mod+F11			exec --no-startup-id ddspawn dropdowncalc -f mono:pixelsize=2
 ##################################################
 # Press $mod+o followed by either f, e, i, Escape or Return to launch firefox,
 # etc. or return to the default mode, respectively.
-set $mode_launcher Launch: [c]hrome [e]macs [f]irefox [m]Evolution [i]ntellij [s]lack [v]im
+set $mode_launcher Launch: [q]utebrowser [c]hrome [e]macs [f]irefox [n]eomutt [i]ntellij [s]lack [v]im
 mode "$mode_launcher" {
+    bindsym q exec qutebrowser
     bindsym c exec google-chrome-stable --restore-last-session
     bindsym e exec emacs
     bindsym f exec firefox
     bindsym i exec intellij
-    bindsym m exec evolution
+    bindsym m exec $term -n mutt -e neomutt
     bindsym s exec slack
     bindsym v exec gvim
     bindsym Escape mode "default"
@@ -418,7 +409,7 @@ bindsym $mod+r mode "resize"
 
 #
 set $Locker i3lock && sleep 1
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $mode_system System: (l)ock, (e)xit/logout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
@@ -430,9 +421,10 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Pause mode "$mode_system"
-
-
+bindsym $mod+Pause mode            "$mode_system"
+bindsym Ctrl+$mod+$alt+Delete mode "$mode_system"
+#
+# gaps
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -496,8 +488,8 @@ exec --no-startup-id xautolock -locker "i3lock -ni <(import -silent -window root
 exec --no-startup-id xsetroot -solid black
 exec --no-startup-id feh --bg-fil  ~/Dropbox/media/images/Wallpapers/hokusai-wave.jpg
 # my apps
-exec --no-startup-id google-chrome-stable --restore-last-session
-exec --no-startup-id evolution
+#exec --no-startup-id google-chrome-stable --restore-last-session
+exec --no-startup-id qutebrowser
 exec --no-startup-id slack
 exec --no-startup-id ~/bin/Telegram/Telegram
 # admin session and monitoring
