@@ -158,6 +158,7 @@ alias ll="ls -l"
 alias la="ls -la"
 alias lh="ls -lah"
 alias  l="ls -1"
+alias dots="cd ~/Code/local/undx-dots"
 # neovim
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
