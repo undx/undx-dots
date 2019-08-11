@@ -336,7 +336,8 @@ bindsym $mod+u [urgent=latest] focus
 bindsym $mod+Return       exec --no-startup-id $term
 bindsym $mod+Shift+Return exec --no-startup-id i3-samedir
 # screenshot
-bindsym Print exec i3-screenshot
+bindsym Print            exec --no-startup-id i3-screenshot
+bindsym Ctrl+$mod+$alt+p exec --no-startup-id i3-screenshot
 # file manager
 bindsym $mod+Home exec nemo
 bindsym $mod+Shift+Home  exec $term -n ranger -e ranger
@@ -354,11 +355,11 @@ bindsym XF86AudioMute        exec --no-startup-id $volumemute
 bindsym XF86AudioLowerVolume exec --no-startup-id $volumedown
 bindsym XF86AudioRaiseVolume exec --no-startup-id $volumeup
 #
-bindsym $mod+x           exec rofi -show run    -p "undx run" -location 2
-bindsym $mod+space       exec rofi -show window -p "undx switch window"
+bindsym $mod+x           exec rofi -show run    -p "run" -location 2
+bindsym $mod+space       exec rofi -show window -p "switch window"
 bindsym $mod+Shift+space exec rofi -show combi
 bindsym $mod+j           exec rofi-jira
-bindsym $mod+p           exec gopass ls --flat | rofi -dmenu -p "undx gopass" | xargs --no-run-if-empty gopass show -f | head -n 1 | xdotool type --clearmodifiers --file -
+bindsym $mod+p           exec gopass ls --flat | rofi -dmenu -p "gopass" | xargs --no-run-if-empty gopass show -f | head -n 1 | xdotool type --clearmodifiers --file -
 #
 #bindsym $mod+b			bar mode toggle
 bindsym $mod+Shift+b		floating toggle; sticky toggle; exec --no-startup-id hover left
