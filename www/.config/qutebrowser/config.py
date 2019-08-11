@@ -1068,16 +1068,16 @@ c.fonts.web.size.default_fixed = 13
 
 ## Enter insert mode if an editable element is clicked.
 ## Type: Bool
-# c.input.insert_mode.auto_enter = True
+c.input.insert_mode.auto_enter = True
 
 ## Leave insert mode if a non-editable element is clicked.
 ## Type: Bool
-# c.input.insert_mode.auto_leave = True
+c.input.insert_mode.auto_leave = True
 
 ## Automatically enter insert mode if an editable element is focused
 ## after loading the page.
 ## Type: Bool
-# c.input.insert_mode.auto_load = False
+c.input.insert_mode.auto_load = True
 
 ## Leave insert mode when starting a new page load. Patterns may be
 ## unreliable on this setting, and they may match the url you are
@@ -1950,10 +1950,10 @@ c.hints.selectors["code"] = [
     ":not(pre) > code",
     "pre"
 ]
-config.bind(';c', 'hint code userscript code_select.py')
+config.bind(';c', 'hint code userscript code_select')
 ##
 ## qute-capture
-config.bind(',b', 'spawn --userscript qute-capture.py read')
+config.bind(',b', 'spawn --userscript qute-capture read')
 ##
 ## qute-pass
 config.bind('<z><l>',    'spawn --userscript qute-pass')
