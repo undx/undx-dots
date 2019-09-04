@@ -8,3 +8,12 @@ rofi.opacity: 80
 rofi.show-icons: True
 rofi.fixed-num-lines: False
 plugin-path: /usr/local/lib/rofi/
+
+rofi.run-command:                   {cmd}
+rofi.run-shell-command:             st {cmd}
+rofi.fuzzy:                         true
+rofi.glob:                          true
+rofi.tokenize:                      true
+rofi.case-sensitive:                false
+rofi.fixed-num-lines:               false
+

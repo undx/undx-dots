@@ -1,0 +1,2 @@
+#!/bin/sh
+rofi -dmenu -i -input /usr/share/dict/french -levenshtein-sort -p "spell" |tr -d '\n'| xclip

@@ -355,11 +355,11 @@ bindsym XF86AudioMute        exec --no-startup-id $volumemute
 bindsym XF86AudioLowerVolume exec --no-startup-id $volumedown
 bindsym XF86AudioRaiseVolume exec --no-startup-id $volumeup
 #
-bindsym $mod+x           exec rofi -show run    -p "undx run" -location 2
-bindsym $mod+space       exec rofi -show window -p "undx switch window"
+bindsym $mod+x           exec rofi -show run    -p "run" -location 2
+bindsym $mod+space       exec rofi -show window -p "switch window"
 bindsym $mod+Shift+space exec rofi -show combi
 bindsym $mod+j           exec rofi-jira
-bindsym $mod+p           exec gopass ls --flat | rofi -dmenu -i -p "undx gopass" | xargs --no-run-if-empty gopass show -f | head -n 1 | xdotool type --clearmodifiers --file -
+bindsym $mod+p           exec gopass ls --flat | rofi -dmenu -i -p "gopass" | xargs --no-run-if-empty gopass show -f | head -n 1 | xdotool type --clearmodifiers --file -
 bindsym $mod+c           exec --no-startup-id rofi -show calc -modi calc -no-show-match -no-sort
 #
 #

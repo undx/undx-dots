@@ -1,0 +1,9 @@
+#!/bin/sh
+# found somewhere in the web...
+FILES=$(fd -e pdf '' $HOME)
+FILE_INDEX=$(echo "$FILES" | sed -e "s#$HOME/\(.*\)\.pdf#\1#gi" | rofi -dmenu -i -p "PDF" -format d)
+case $FILE_INDEX in
+  -1) ;;
+  "") ;;
+  *) zathura "$(echo "$FILES" | sed -n ${FILE_INDEX}p)" ;;
+esac
