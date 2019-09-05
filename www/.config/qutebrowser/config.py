@@ -4,7 +4,7 @@
 
 ## This is here so configs done via the GUI are still loaded.
 ## Remove it to not load settings done via the GUI.
-# config.load_autoconfig()
+config.load_autoconfig()
 
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.
@@ -828,12 +828,12 @@ c.content.default_encoding = 'utf-8'
 ## Directory to save downloads to. If unset, a sensible OS-specific
 ## default is used.
 ## Type: Directory
-# c.downloads.location.directory = None
+c.downloads.location.directory = '~/Downloads'
 
 ## Prompt the user for the download location. If set to false,
 ## `downloads.location.directory` will be used.
 ## Type: Bool
-# c.downloads.location.prompt = True
+c.downloads.location.prompt = False
 
 ## Remember the last used download directory.
 ## Type: Bool

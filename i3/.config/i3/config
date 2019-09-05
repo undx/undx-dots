@@ -337,7 +337,7 @@ bindsym $mod+Return       exec --no-startup-id $term
 bindsym $mod+Shift+Return exec --no-startup-id i3-samedir
 # screenshot
 bindsym Print            exec --no-startup-id i3-screenshot
-bindsym Ctrl+$mod+$alt+p exec --no-startup-id i3-screenshot
+bindsym $mod+Ctrl+$alt+p exec --no-startup-id i3-screenshot
 # file manager
 bindsym $mod+Home exec nemo
 bindsym $mod+Shift+Home  exec $term -n ranger -e ranger
@@ -359,16 +359,17 @@ bindsym $mod+x           exec rofi -show run    -p "run" -location 2
 bindsym $mod+space       exec rofi -show window -p "switch window"
 bindsym $mod+Shift+space exec rofi -show combi
 bindsym $mod+j           exec rofi-jira
-bindsym $mod+p           exec gopass ls --flat | rofi -dmenu -p "gopass" | xargs --no-run-if-empty gopass show -f | head -n 1 | xdotool type --clearmodifiers --file -
+bindsym $mod+p           exec gopass ls --flat | rofi -dmenu -i -p "gopass" | xargs --no-run-if-empty gopass show -f | head -n 1 | xdotool type --clearmodifiers --file -
+bindsym $mod+c           exec --no-startup-id rofi -show calc -modi calc -no-show-match -no-sort
 #
-#bindsym $mod+b			bar mode toggle
+#
 bindsym $mod+Shift+b		floating toggle; sticky toggle; exec --no-startup-id hover left
 bindsym $mod+Shift+n		floating toggle; sticky toggle; exec --no-startup-id hover right
 bindsym $mod+Shift+l		move right 30
 bindsym $mod+Shift+k		move up 30
 bindsym $mod+Shift+j		move down 30
 bindsym $mod+Shift+h		move left 30
-#bindsym $mod+o			sticky toggle
+#
 bindsym $mod+F10			exec $term -n calcy -e bc -lq # ddspawn tmuxdd
 bindsym $mod+F11			exec --no-startup-id ddspawn dropdowncalc -f mono:pixelsize=24
 
@@ -424,6 +425,7 @@ mode "$mode_system" {
 }
 bindsym $mod+Pause mode            "$mode_system"
 bindsym Ctrl+$mod+$alt+Delete mode "$mode_system"
+bindsym Ctrl+$mod+$alt+l  exec --no-startup-id $Locker
 #
 # gaps
 set $mode_gaps Gaps: (o) outer, (i) inner
