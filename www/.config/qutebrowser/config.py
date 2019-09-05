@@ -1564,6 +1564,7 @@ c.tabs.background = True
 # c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}'}
 c.url.searchengines = {
    "DEFAULT": 'https://google.fr/search?q={}',
+  "aw": 'https://wiki.archlinux.org/index.php?search={}',
   "az": 'https://www.amazon.fr/s?k={}',
   "so": 'https://www.stackoverflow.com/search?q={}',
    "j": 'https://jira.talendforge.org/browse/{}',
@@ -1951,6 +1952,9 @@ c.hints.selectors["code"] = [
     "pre"
 ]
 config.bind(';c', 'hint code userscript code_select')
+##
+## readability
+config.bind(',r', 'spawn --userscript readability -t')
 ##
 ## qute-capture
 config.bind(',b', 'spawn --userscript qute-capture read')

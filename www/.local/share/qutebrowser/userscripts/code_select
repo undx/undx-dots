@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 
+# needs to install python-beautifulsoup4
+
 import os
 import html
 import re
 import sys
 import xml.etree.ElementTree as ET
+from bs4 import BeautifulSoup
+
 try:
     import pyperclip
 except ImportError:
@@ -14,9 +18,16 @@ else:
 
 
 def parse_text_content(element):
-    root = ET.fromstring(element)
-    text = ET.tostring(root, encoding="unicode", method="text")
-    text = html.unescape(text)
+    try:
+        root = ET.fromstring(element)
+        text = ET.tostring(root, encoding="unicode", method="text")
+        text = html.unescape(text)
+    except Exception as e:
+        print("Received: `{0}` ".format(element))
+        print("Error: {0}".format(e))
+        # try with bs
+        soup = BeautifulSoup(element, 'lxml')
+        text = '\n'.join(soup.strings)
     return text
 
 

@@ -1,0 +1,104 @@
+#!/usr/bin/env python
+
+# adapted from https://gist.github.com/drtheuns/b0f10b720666383b4a251d77c82e700a
+
+"""
+Executes python-readability on current page and opens the summary.
+If it's started in hinted mode, it attempts to open the hinted url in
+readability mode.
+
+Depends on the python-readability package (`pip install readability-lxml`).
+
+    - https://github.com/buriy/python-readability
+
+Usage:
+    :spawn --userscript readability [-r, --related] [-b, --bg] [-t, --tab]
+    [-w, --window] [-s, --secure] [-p, --private]
+
+See also:
+    :help :open
+        for more information on the different ways of opening a tab.
+
+Example bindings:
+   :bind gR spawn --userscript readability
+        # Open current page in this tab in readability mode
+   :bind ;w hint links userscript readability
+        # Open hinted url in this tab in readability mode.
+"""
+
+#from __future__ import absolute_import
+import codecs
+import os
+import requests
+import sys
+
+from readability import Document
+
+
+def get_css():
+    """Get custom CSS from file if it exists."""
+    dir = os.path.dirname(os.path.realpath(__file__))
+    path = os.path.join(dir, 'readability.css')
+    # don't force people to have css
+    if not os.path.exists(path):
+        return ""
+    with open(path, 'r') as f:
+        return f.read()
+
+
+def format_content(data):
+    """Fix the header"""
+    doc = Document(data)
+    return doc.summary().replace(
+        '<html>', '<html><head><title>%s</title>'
+        '<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />'
+        '<style>%s</style></head>' % (doc.title(), get_css()))
+
+
+def get_content_from_env():
+    """Get url from current page"""
+    with codecs.open(os.environ['QUTE_HTML'], 'r', 'utf-8') as source:
+        data = source.read()
+        return format_content(data)
+
+
+def get_content_from_url():
+    """Get the html from hinted url"""
+    request = requests.get(os.environ['QUTE_URL'])
+    request.encoding = 'utf-8'
+    return format_content(request.text)
+
+
+def open_format(f):
+    """Allow for more advanced tab opening.
+    Defaults to opening in current tab
+
+    See also:
+        qute://help/commands.html#open
+    """
+    if len(sys.argv) != 2:
+        return 'open %s' % f
+    return 'open %s %s' % (sys.argv[1], f)
+
+
+def main():
+    tmpfile = os.path.expanduser('~/.local/share/qutebrowser/userscripts'
+                                 '/readability.html')
+    if not os.path.exists(os.path.dirname(tmpfile)):
+        os.makedirs(os.path.dirname(tmpfile))
+
+    if os.environ['QUTE_MODE'] == 'command':
+        content = get_content_from_env()
+    elif os.environ['QUTE_MODE'] == 'hints':
+        content = get_content_from_url()
+
+    with codecs.open(tmpfile, 'w', 'utf-8') as target:
+        target.write(content)
+
+    with open(os.environ['QUTE_FIFO'], 'w') as fifo:
+        fifo.write(open_format(tmpfile))
+        # scroll back to top
+        fifo.write(';; fake-key -g gg')
+
+if __name__ == '__main__':
+    main()
