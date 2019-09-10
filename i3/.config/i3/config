@@ -68,7 +68,7 @@ client.background       #ffffff
 bar {
   id bar-top
     position top
-    status_command SCRIPT_DIR=/usr/libexec/i3blocks i3blocks -c ~/.config/i3/i3blocks-top.conf
+    status_command i3blocks -c ~/.config/i3/i3blocks-top.conf
     tray_output primary
     separator_symbol ":"
     workspace_buttons  yes
