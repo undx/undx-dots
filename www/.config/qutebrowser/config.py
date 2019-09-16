@@ -1083,7 +1083,7 @@ c.input.insert_mode.auto_load = True
 ## unreliable on this setting, and they may match the url you are
 ## navigating to, or the URL you are navigating from.
 ## Type: Bool
-# c.input.insert_mode.leave_on_load = True
+c.input.insert_mode.leave_on_load = False
 
 ## Switch to insert mode when clicking flash and other plugins.
 ## Type: Bool
