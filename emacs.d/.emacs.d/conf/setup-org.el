@@ -121,6 +121,12 @@
                          ,org-jira-dir
                          ,org-default-notes-file
                          ,org-diary-file))
+
+(use-package excorporate
+  :ensure t
+  :config
+  (setq excorporate-configuration (quote ("egallois@talend.com" . "https://outlook.office365.com/EWS/Exchange.asmx"))))
+
 ;;
 ;;
 ;; workflow

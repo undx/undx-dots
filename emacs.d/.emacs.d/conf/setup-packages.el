@@ -7,6 +7,10 @@
 (package-initialize nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("org"   . "http://orgmode.org/elpa/"))
+
+;; bug fixed in emacs 26.3 so keep it until got this release
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+;;
 (package-initialize t)
 (setq package-enable-at-startup nil)
 (unless (package-installed-p 'use-package)
@@ -32,6 +36,7 @@
     duplicate-thing
     evil
     expand-region
+    excorporate
     flx
     flycheck
     goto-chg
