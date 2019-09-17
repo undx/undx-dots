@@ -475,7 +475,7 @@ exec_always --no-startup-id pgrep nm-applet || nm-applet
 exec_always --no-startup-id pgrep blueman-applet || blueman-applet
 exec_always --no-startup-id pgrep xscreensaver || xscreensaver -no-splash
 #exec_always --no-startup-id pgrep dunst || dunst
-exec_always --no-startup-id pgrep compton  || compton -f
+#exec_always --no-startup-id pgrep compton  || compton -f
 exec_always --no-startup-id pgrep autokey-gtk || autokey-gtk
 exec_always --no-startup-id pgrep copyq || copyq
 exec_always --no-startup-id pgrep dropbox || dropbox start
