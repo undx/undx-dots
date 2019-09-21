@@ -42,7 +42,7 @@ echo ssh editor
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='gvim'
+  export EDITOR='gvim --nofork'
 fi
 #######
 # GPG #
