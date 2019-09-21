@@ -123,6 +123,8 @@ st.font: Monospace-16
 
 emacs.alpha: 1
 
+!SXIV
+Sxiv.font: Ubuntu Mono:size=16
 !! XScreenSaver
 XScreenSaver*dateFormat: %H:%M
 XscreenSaver*font: xft:Ubuntu Mono:style=Regular:size=14:antialias=true:hinting=true

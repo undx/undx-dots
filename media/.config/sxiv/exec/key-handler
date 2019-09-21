@@ -1,15 +1,32 @@
 #!/bin/sh
+
+dmenu="rofi -dmenu"
 while read file
 do
-        case "$1" in
-        "C-d")
-                mv "$file" ~/.trash ;;
-        "C-r")
-                convert -rotate 90 "$file" "$file" ;;
-        "C-c")
-                echo -n "$file" | xclip -selection clipboard ;;
-        "C-w")
-                nitrogen --save --set-zoom-fill "$file" ;;
-        esac
+  fullpath="$(pwd)/$file"
+  case "$1" in
+    "C-c") xclip -selection clipboard -target image/png "$file" ;;
+    #    "C-c") echo -n "$file" | xclip -selection clipboard ;;
+    "C-k") mv "$file" ~/.local/share/Trash/files ;;
+    "C-i") st -n "$file" -e sh -c "exiv2 pr -q -pa '$file' | less" & ;;
+    "C-r") convert -rotate 90 "$file" "$file" ;;
+    "C-x") xclip -in -filter | tr '\n' ' ' | xclip -in -selection clipboard ;;
+    "C-G") tr '\n' '\0' | xargs -0 gimp & ;;
+    "C-y") mkdir -p  ~/Pictures/Stashed && cp "$file"  ~/Pictures/Stashed ;;
+    "C-w") mkdir -p  ~/Pictures/Wallpapers && cp "$file"  ~/Pictures/Wallpapers ;;
+    "C-R") rawtherapee "$file" & ;;
+    "c")
+      [ -z "$destdir" ] && destdir="$(sed "s/\s.*#.*$//;/^\s*$/d" ~/.config/Scripts/folders.shortcuts | awk '{print $2}' | $dmenu -l 20 -i -p "Copy file(s) to where?" | sed "s|~|$HOME|g")"
+      [ -z "$destdir" ] && exit
+      cp "$file" "$destdir" && notify-send -i "$fullpath" "$file copied to $destdir." &
+      ;;
+    "m")
+      [ -z "$destdir" ] && destdir="$(sed "s/\s.*#.*$//;/^\s*$/d" ~/.config/Scripts/folders.shortcuts | awk '{print $2}' | $dmenu -l 20 -i -p "Move file(s) to where?" | sed "s|~|$HOME|g")"
+      [ -z "$destdir" ] && exit
+      cp "$file" "$destdir" && notify-send -i "$fullpath" "$file moved to $destdir." &
+      ;;
+    "y") echo -n "$file" | xclip -selection clipboard && notify-send "$file copied to clipboard" & ;;
+    "Y") echo -n "$fullpath" | xclip -selection clipboard && notify-send "$fullpath copied to clipboard" & ;;
+    "d") [ "$(printf "No\\nYes" | $dmenu -p "Delete $file?")" = "Yes" ] && rm "$file" && notify-send "$file deleted." ;;
+  esac
 done
-
