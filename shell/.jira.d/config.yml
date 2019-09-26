@@ -15,7 +15,7 @@ custom-commands:
     script: |-
       if [ -n "$JIRA_PROJECT" ]; then
           # if `project: ...` configured just list the issues for current project
-          {{jira}} list --template table --query "resolution = unresolved and (assignee=currentuser() OR assignee was currentUser() OR reporter = currentUser()) and project = $JIRA_PROJECT ORDER BY priority asc, created"
+          {{jira}} list -s updated --template rofi-list --query "resolution = unresolved and (assignee=currentuser() OR assignee was currentUser() OR reporter = currentUser()) and project = $JIRA_PROJECT ORDER BY updated desc, priority"
       else
           # otherwise list issues for all project
           {{jira}} list --template table --query "resolution = unresolved and assignee=currentuser() ORDER BY priority asc, created"
