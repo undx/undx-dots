@@ -117,6 +117,7 @@ export NO_AT_BRIDGE=1
 # Other stuff - Work related #
 ##############################
 echo "[env] Talend"
+export JAVA_HOME=/usr/lib/jvm/default
 export SOURCES=~/Code/Talend
 export TALEND_REGISTRY=registry.datapwn.com
 export GOOGLE_APPLICATION_CREDENTIALS=~/Dropbox/egallois-gcloud-key.json
