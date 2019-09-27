@@ -11,7 +11,7 @@ custom-commands:
     script: "echo $JIRA_PROJECT"
 
   - name: mine
-    help: display issues assigned to me
+    help: display issues that are/was assigned to me
     script: |-
       if [ -n "$JIRA_PROJECT" ]; then
           # if `project: ...` configured just list the issues for current project
@@ -32,3 +32,13 @@ custom-commands:
           echo "\"project: ...\" configuration missing from .jira.d/config.yml"
       fi
 
+  - name: assigned2me
+    help: display issues assigned to me
+    script: |-
+      if [ -n "$JIRA_PROJECT" ]; then
+          # if `project: ...` configured just list the issues for current project
+          {{jira}} list -s updated --template rofi-list --query "resolution = unresolved and assignee=currentuser() ORDER BY updated desc, priority"
+      else
+          # otherwise list issues for all project
+          {{jira}} list --template table --query "resolution = unresolved and assignee=currentuser() ORDER BY priority asc, created"
+      fi

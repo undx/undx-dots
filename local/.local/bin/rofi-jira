@@ -1,4 +1,4 @@
 #!/bin/sh
 
-ISSUE=$(jira mine|rofi -dmenu -i -p "jira"|sed -e's/:.*$//')
+ISSUE=$(jira $1|rofi -dmenu -i -p "jira"|sed -e's/:.*$//')
 [[ ! -z "$ISSUE" ]] && qutebrowser https://jira.talendforge.org/browse/$ISSUE
