@@ -115,6 +115,7 @@ set $ws9 "9:logs"
 set $ws0 "0:Studio"
 set $ws_zoom "Zoom"
 set $ws_gimp "Gimp"
+set $ws_transmission "Transmission"
 
 #          
 # define monitors
@@ -187,12 +188,14 @@ assign [class="Emacs"] $ws2
 assign [class="jetbrains-idea-ce"] $ws3
 assign [class="nemo"] $ws4
 assign [class="Slack|Telegram|TelegramDesktop|Skype"] $ws5
-assign [class="transmission-gtk"] $ws6
+assign [class="Transmission-gtk"] $ws_transmission
 assign [class="Evolution"] $ws7
 assign [class="neomutt"]   $ws7
 assign [class="libreoffice|LibreOffice|soffice"] $ws8
 assign [title="journalctl|sudo|xerrors|i3-dump-log|tail|xerrors"] $ws9
 assign [title="Zoom.-.Pro.Account"] $ws_zoom
+assign [class="Talend.Studio"] $ws0
+assign [title="Talend.Studio.*"] $ws0
 ##################################################
 # misc settings
 ##################################################
@@ -358,7 +361,8 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id $volumeup
 bindsym $mod+x           exec rofi -show run    -p "run" -location 2
 bindsym $mod+space       exec rofi -show window -p "switch window"
 bindsym $mod+Shift+space exec rofi -show combi
-bindsym $mod+j           exec rofi-jira
+bindsym $mod+j           exec rofi-jira mine
+bindsym $mod+Shift+m     exec rofi-jira assigned2me
 bindsym $mod+p           exec gopass ls --flat | rofi -dmenu -i -p "gopass" | xargs --no-run-if-empty gopass show -f | head -n 1 | xdotool type --clearmodifiers --file -
 bindsym $mod+c           exec --no-startup-id rofi -show calc -modi calc -no-show-match -no-sort
 #

@@ -1,4 +1,4 @@
 #!/bin/sh
 
-ISSUE=$(jira list -w emmanuel_g -t rofi-list -s updated|rofi -dmenu -i -p "undx jira"|sed -e's/:.*$//')
+ISSUE=$(jira $1|rofi -dmenu -i -p "jira"|sed -e's/:.*$//')
 [[ ! -z "$ISSUE" ]] && qutebrowser https://jira.talendforge.org/browse/$ISSUE
