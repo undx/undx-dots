@@ -645,7 +645,7 @@ c.content.default_encoding = 'utf-8'
 ## setting with a URL pattern instead. Local domains are always exempt
 ## from hostblocking.
 ## Type: List of UrlPattern
-c.content.host_blocking.whitelist = ['shareasale.com', 'googleadservices.com']
+c.content.host_blocking.whitelist = ['shareasale.com', 'www.googleadservices.com', 'www.ojrq.net']
 
 ## Enable hyperlink auditing (`<a ping>`).
 ## Type: Bool
