@@ -99,7 +99,7 @@ bar {
 gaps inner 10
 gaps outer 10
 smart_borders on
-smart_gaps on
+smart_gaps    on
 ##################################################
 # workspaces #
 ##################################################

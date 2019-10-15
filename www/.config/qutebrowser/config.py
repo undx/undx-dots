@@ -1920,6 +1920,7 @@ c.zoom.levels = [x for x in range(20, 500, 5)]
 config.bind(',f', 'open {primary}')
 config.bind(',F', 'open --tab {primary}')
 config.bind(',t', 'open --tab https://translate.google.com/#auto/fr/{primary}')
+config.bind(',w', 'open -w {url};; tab-close')
 # go up in url / site root
 config.bind('gu', 'navigate up')
 config.bind('gU', 'open {url:host}')
