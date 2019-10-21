@@ -148,20 +148,10 @@
 ;; Other UI
 ;;
 ;;
-
-
 ;; font size according screen resolution
 (let ((font-name "Ubuntu Mono")
       (size (if (> (display-pixel-width) 3000) 18 14)))
   (set-face-attribute 'default nil :font (format (concat font-name "-%d") size)))
-;; disable linum if lines>1500
-(global-linum-mode nil)
-(use-package nlinum)
-(global-nlinum-mode 1)
-;;
-(fringe-mode '(12 . 12)) ;; little bit larger than defaults.
-;;
-;;
 
 ;; show-paren-match
 ;; idle-highligh > region
