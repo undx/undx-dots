@@ -837,7 +837,7 @@ c.downloads.location.prompt = False
 
 ## Remember the last used download directory.
 ## Type: Bool
-# c.downloads.location.remember = True
+c.downloads.location.remember = False
 
 ## What to display in the download filename input.
 ## Type: String
@@ -858,7 +858,7 @@ c.downloads.location.prompt = False
 ## Valid values:
 ##   - top
 ##   - bottom
-# c.downloads.position = 'top'
+c.downloads.position = 'bottom'
 
 ## Duration (in milliseconds) to wait before removing finished downloads.
 ## If set to -1, downloads are never removed.
@@ -892,7 +892,7 @@ c.fonts.debug_console = '14pt monospace'
 
 ## Font used for the downloadbar.
 ## Type: Font
-c.fonts.downloads = '14pt monospace'
+c.fonts.downloads = '12pt monospace'
 
 ## Font used for the hints.
 ## Type: Font
@@ -1176,7 +1176,6 @@ c.input.insert_mode.leave_on_load = False
 ## running QtWebEngine on Wayland.
 ## Type: String
 # c.qt.force_platform = None
-c.qt.force_software_rendering = 'chromium'
 
 ## Force software rendering for QtWebEngine. This is needed for
 ## QtWebEngine to work with Nouveau drivers and can be useful in other
@@ -1188,6 +1187,7 @@ c.qt.force_software_rendering = 'chromium'
 ##   - chromium: Tell Chromium to disable GPU support and use Skia software rendering instead. (`--disable-gpu`)
 ##   - none: Don't force software rendering.
 # c.qt.force_software_rendering = 'none'
+c.qt.force_software_rendering = 'software-opengl'
 
 ## Turn on Qt HighDPI scaling. This is equivalent to setting
 ## QT_AUTO_SCREEN_SCALE_FACTOR=1 in the environment. It's off by default
@@ -1580,6 +1580,8 @@ c.url.searchengines = {
    "tfe": 'https://translate.google.com/#view=home&op=translate&sl=fr&tl=en&text={}',
    "tfp": 'https://translate.google.com/#view=home&op=translate&sl=fr&tl=pt&text={}',
    "tpf": 'https://translate.google.com/#view=home&op=translate&sl=pt&tl=fr&text={}',
+   # images
+   "te": "https://www.tineye.com/search?url={}",
 }
 
 ## Page(s) to open at the start.
@@ -1915,12 +1917,12 @@ c.zoom.levels = [x for x in range(20, 500, 5)]
 ##
 ## key bindings
 ##
-# config.bind(';h', 'set downloads.location.directory ~/ ;; hint links download')
 # search selected text
 config.bind(',f', 'open {primary}')
 config.bind(',F', 'open --tab {primary}')
 config.bind(',t', 'open --tab https://translate.google.com/#auto/fr/{primary}')
 config.bind(',w', 'open -w {url};; tab-close')
+config.bind(',p', 'open -p {url};; tab-close')
 # go up in url / site root
 config.bind('gu', 'navigate up')
 config.bind('gU', 'open {url:host}')
@@ -1932,6 +1934,7 @@ config.bind('<Ctrl-r>', 'search-prev', mode='command')
 # hinting
 config.bind('<Ctrl-Space>', 'hint', mode='normal')
 config.bind('<Alt-s>', 'hint', mode='normal')
+config.bind(';P', 'hint links fill :open -p {hint-url}')
 # cycle config
 config.bind('tf', 'config-cycle -p -t statusbar.hide ;; config-cycle tabs.show always switching')
 config.bind('tt', 'config-cycle -p -t tabs.show always switching')
@@ -1943,6 +1946,8 @@ config.bind(';V', 'hint --rapid links spawn umpv {hint-url}')
 config.bind(',y', 'spawn --userscript qute-youtube-dl {url}')
 config.bind(';xv', 'hint links spawn --userscript qute-youtube-dl {hint-url}')
 config.bind(';xV', 'hint --rapid links spawn --userscript qute-youtube-dl {hint-url}')
+# images
+config.bind(';h', 'set downloads.location.directory ~/Pictures/Web ;; hint links download')
 ##
 ## Userscripts
 ##
