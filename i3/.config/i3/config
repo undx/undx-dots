@@ -376,7 +376,8 @@ bindsym $mod+Shift+h		move left 30
 #
 bindsym $mod+F10			exec $term -n calcy -e bc -lq # ddspawn tmuxdd
 bindsym $mod+F11			exec --no-startup-id ddspawn dropdowncalc -f mono:pixelsize=24
-
+# edit selection in gvim and set edited content to clipboard
+bindsym $mod+$alt+v exec edit-in-gvim
 #bindsym $mod+q			[con_id="__focused__" instance="^(?!dropdown_).*$"] kill
 #bindsym $mod+Shift+q		[con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
 

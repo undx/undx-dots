@@ -1,0 +1,20 @@
+#!/bin/bash
+
+function setclip {
+  xclip -selection c
+}
+
+function getclip {
+  xclip -selection clipboard -o
+}
+file=$(mktemp)
+xclip -o > "$file"
+gvim --nofork "$file"
+# cat $TMPFILE | xclip -selection clipboard
+cat $file | setclip
+rm $file
+
+xdotool key ctrl+v
+
+
+
