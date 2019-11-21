@@ -115,6 +115,7 @@ set $ws9 "9:logs"
 set $ws0 "0:Studio"
 set $ws_zoom "Zoom"
 set $ws_gimp "Gimp"
+set $ws_darktable "Darktable"
 set $ws_transmission "Transmission"
 
 #          
@@ -163,6 +164,7 @@ for_window [window_role="GtkFileChooserDialog"] resize set 1000 800, move positi
 # gimp
 for_window [title="GIMP Startup"] move workspace $ws_gimp
 for_window [class="Gimp"]         move workspace $ws_gimp
+for_window [class="Darktable"]    move workspace $ws_darktable
 
 # on some events
 # for_window [urgent="latest"] focus

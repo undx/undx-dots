@@ -163,7 +163,7 @@ if has("gui_macvim")
   set guioptions=aAce
   " Menu remapping
   macmenu &File.New\ Tab key=<D-S-t>
-  set guifont=Ubuntu\ Mono\ derivative\ Powerline:h18
+  set guifont=Ubuntu\ Mono\ derivative\ Powerline:h14
 endif
 " }}}
 " Windows platform {{{
@@ -176,7 +176,7 @@ endif
 " Linux {{{
 if has("x11")
   set guioptions=a
-  set guifont=Ubuntu\ Mono\ 18
+  set guifont=Ubuntu\ Mono\ 14
 "  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 14
 endif
 "}}}

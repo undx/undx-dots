@@ -55,7 +55,7 @@
 !#####################!
 !### XDefault font ###!
 !#####################!
-*.font: Ubuntu Mono-18
+*.font: Ubuntu Mono-16
 !*.font: xft:Ubuntu Mono:style=Regular:size=18:antialias=true:hinting=true
 !*.font: xft:Monospace:size=18
 !*.font: Fira Code-18
@@ -87,9 +87,9 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 URxvt.fading:               15
 URxvt.letterSpace:      -1
-URxvt.font: xft:Ubuntu Mono:style=Regular:size=18:antialias=true:hinting=true
-URxvt.boldFont: xft:Ubuntu Mono:style=Bold:size=18:antialias=true:hinting=true
-URxvt.boldItalicFont: xft:Ubuntu Mono:style=Bold Italic:size=18:antialias=true:hinting=true
+URxvt.font: xft:Ubuntu Mono:style=Regular:size=16:antialias=true:hinting=true
+URxvt.boldFont: xft:Ubuntu Mono:style=Bold:size=16:antialias=true:hinting=true
+URxvt.boldItalicFont: xft:Ubuntu Mono:style=Bold Italic:size=16:antialias=true:hinting=true
 URxvt*saveLines: 50000
 URxvt.urgentOnBell: true
 ! get rid of "iso 14755 mode" and "keycap picture insert mode" notification
@@ -98,8 +98,10 @@ URxvt.iso14755_52: false
 URxvt.font-size.step: 1
 ! Lien cliquable
 ! 1=clic gauche, 2= clic milieu, 3=clic droit
-URxvt.perl-ext-common:  default,matcher,tabbed,url-picker,font-size
-URxvt.urlLauncher:      google-chrome
+URxvt.perl-ext-common:  default,matcher,tabbed,url-picker,font-size,clipboard,url-select,keyboard-select
+URxvt.urlLauncher:      qutebrowser
+URxvt.url-select.launcher: qutebrowser
+URxvt.url-select.underline: true
 URxvt.matcher.button:   3
 ! Prise en charge des onglets
 ! shift+bas ou clic sur NEW= ouvrir nouvel onglet,
@@ -112,6 +114,8 @@ URxvt.keysym.CM-u: perl:url-picker
 Rxvt.keysym.C-equal: perl:font-size:increase
 URxvt.keysym.C-minus: perl:font-size:decrease
 URxvt.tabbed.autohide: true
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! ST
 !! Transparency (0-1):

@@ -160,6 +160,7 @@ alias lh="ls -lah"
 alias  l="ls -1"
 alias dots="cd ~/Code/local/undx-dots"
 alias cse="cd ~/Code/Talend/connectors-se"
+alias cee="cd ~/Code/Talend/connectors-ee"
 # neovim
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'

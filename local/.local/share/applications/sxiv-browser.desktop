@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=sxiv browser
+Comment=Launches sxiv in thumbnail mode for %N
+Icon=sxiv
+Terminal=false
+Exec=sxiv-browser %U
+Categories=System;Image;
+MimeType=inode/directory;
