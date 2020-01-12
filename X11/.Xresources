@@ -98,7 +98,7 @@ URxvt.iso14755_52: false
 URxvt.font-size.step: 1
 ! Lien cliquable
 ! 1=clic gauche, 2= clic milieu, 3=clic droit
-URxvt.perl-ext-common:  default,matcher,tabbed,url-picker,font-size,clipboard,url-select,keyboard-select
+URxvt.perl-ext-common:  default,matcher,tabbed,resize-font,clipboard,url-select,keyboard-select
 URxvt.urlLauncher:      qutebrowser
 URxvt.url-select.launcher: qutebrowser
 URxvt.url-select.underline: true
@@ -111,8 +111,8 @@ URxvt.matcher.button:   3
 !URxvt.matcher.button: 1 URxvt.matcher.pattern.1: /.*
 URxvt.keysym.C-f: perl:url-picker
 URxvt.keysym.CM-u: perl:url-picker
-Rxvt.keysym.C-equal: perl:font-size:increase
-URxvt.keysym.C-minus: perl:font-size:decrease
+Rxvt.keysym.C-equal: resize-font:bigger
+URxvt.keysym.C-minus: resize-font:smaller
 URxvt.tabbed.autohide: true
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 URxvt.keysym.M-s:           perl:keyboard-select:search
