@@ -135,10 +135,10 @@ ZSH_HIGHLIGHT_STYLES[assign]=none
 #/usr/share/icons/Adwaita/64x64/status/weather-severe-alert-symbolic.symbolic.png
 zstyle ':notify:*' activate-terminal yes
 zstyle ':notify:*' error-icon    "/usr/share/icons/Adwaita/64x64/status/weather-severe-alert-symbolic.symbolic.png"
-zstyle ':notify:*' error-sound   "Glass"
+#zstyle ':notify:*' error-sound   "Glass"
 zstyle ':notify:*' error-title   "Command failed (in #{time_elapsed} seconds)"
 zstyle ':notify:*' success-icon  "/usr/share/icons/Adwaita/64x64/status/weather-clear-symbolic.symbolic.png"
-zstyle ':notify:*' success-sound "default"
+#zstyle ':notify:*' success-sound "default"
 zstyle ':notify:*' success-title "Command finished (in #{time_elapsed} seconds)"
 #
 #
