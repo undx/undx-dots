@@ -645,7 +645,9 @@ c.content.default_encoding = 'utf-8'
 ## setting with a URL pattern instead. Local domains are always exempt
 ## from hostblocking.
 ## Type: List of UrlPattern
-c.content.host_blocking.whitelist = ['shareasale.com', 'www.googleadservices.com', 'www.ojrq.net']
+c.content.host_blocking.whitelist = ['shareasale.com', 'www.googleadservices.com', 'www.ojrq.net',
+				     'app.getresponse.com', 'browser.pipe.aria.microsoft.com',
+				     'track.effiliation.com' ]
 
 ## Enable hyperlink auditing (`<a ping>`).
 ## Type: Bool
@@ -1972,3 +1974,15 @@ config.bind('<z><p><l>', 'spawn --userscript qute-pass --password-only')
 config.bind('<z><a>',    'spawn --userscript qute-pass-add {url}')
 config.bind('<Alt+p>',   'spawn --userscript qute-pass-add {url}')
 ##
+
+
+
+#with config.pattern('*://*.strava.com/*') as p:
+#    c.content.user_stylesheets = ['~/css/strava.css']
+#with config.pattern('*://*.youtube.com/*') as p:
+#    c.content.user_stylesheets = ['~/css/youtube.css']
+
+with config.pattern('*://*.github.com/*') as p:
+    print(p)
+    #p.zoom.default = '120%'
+

@@ -19,7 +19,7 @@ console https://console.cloud.google.com/home/dashboard
 outlook https://outlook.office365.com/mail/inbox
 ak https://github.com/Talend/tcommon-studio-se/pull/2633
 ais https://mail.google.com/mail/u/0/#inbox/FMfcgxwDqndCMVvwDxrLRVgZnmldvkMR
-jenkins https://jenkins-common.datapwn.com/job/connectors-se/
+jenkins https://jenkins-connectors.datapwn.com/job/connectors-se/job/master/
 calendar https://calendar.google.com/calendar/r/month
 cal https://calendar.google.com/calendar/r/month
 magnetdl https://www.magnetdl.com/
@@ -29,3 +29,7 @@ sg https://particuliers.societegenerale.fr/
 torrentz-ok https://wwv.torrent9.cz/torrents/
 unicode test https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Unicode/Test
 hpdeskjet https://192.168.1.15/#
+trello https://trello.com/b/x6JibOOQ/tdi-retro
+news https://news.google.com/?hl=fr&gl=FR&ceid=FR:fr
+inst https://topbase.co/
+java8 udemy https://talend.udemy.com/course/modern-java-learn-java-8-features-by-coding-it/learn/lecture/11269588#overview
