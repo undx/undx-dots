@@ -1,2 +1,2 @@
 echo Happy Hacking Keyboard Map - Alt is AltGr
-setxkbmap -layout ux -option ctrl:nocaps -option compose:menu -option altr:altgr
+setxkbmap -layout ux -option ctrl:nocaps -option compose:menu -option altr:altgr,altwin:swap_lalt_lwin
