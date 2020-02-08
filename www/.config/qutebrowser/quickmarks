@@ -36,3 +36,7 @@ java8 udemy https://talend.udemy.com/course/modern-java-learn-java-8-features-by
 romain https://rmannibucau.metawerx.net/
 travis https://travis-ci.org/Talend/component-runtime?utm_medium=notification&utm_source=github_status
 crt https://github.com/Talend/component-runtime
+emacs-vidz https://protesilaos.com/codelog/2019-07-29-emacs-kbd-macros/#content
+tacokit jira settings https://jira.talendforge.org/plugins/servlet/project-config/TCOMP/summary
+tacokit jira issues https://jira.talendforge.org/projects/TCOMP/issues/TCOMP-1400?filter=allopenissues
+tacokit release notes jira https://jira.talendforge.org/secure/ConfigureReleaseNote.jspa?projectId=12130&version=25052
