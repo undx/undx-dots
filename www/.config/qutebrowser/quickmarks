@@ -1,36 +1,41 @@
+ak https://github.com/Talend/tcommon-studio-se/pull/2633
+apk android https://docs.google.com/spreadsheets/d/1Lq136G8YT50IPENDJnOTun1TV2zNhvOIZydeasBBars/edit#gid=0
 az https://www.amazon.fr/
+azure https://portal.azure.com/#home
+cal https://calendar.google.com/calendar/r/month
+cee https://github.com/Talend/cloud-components
+console https://console.cloud.google.com/home/dashboard
+crpgbook https://crpgbook.wordpress.com/about-the-project/
+crt https://github.com/Talend/component-runtime
+cse https://github.com/Talend/connectors-se
+emacs-vidz https://protesilaos.com/codelog/2019-07-29-emacs-kbd-macros/#content
 g https://www.google.fr/
-gmail https://mail.google.com/mail/u/0/#inbox
-tr https://translate.google.com/
-yt https://www.youtube.fr/
+ghtcomp https://github.com/Talend/components
+ghtstudio https://github.com/Talend/tdi-studio-se
 ghu https://github.com/undx/
 ghudots https://github.com/undx/undx-dots
-ghtcomp https://github.com/Talend/components
-ghtconnse https://github.com/Talend/connectors-se
-ghtstudio https://github.com/Talend/tdi-studio-se
-mai https://www.linkedin.com/?trk=d_public_post_logo
+gmail https://mail.google.com/mail/u/0/#inbox
 go-jira https://github.com/go-jira/jira
-crpgbook https://crpgbook.wordpress.com/about-the-project/
-photos https://photos.google.com/
-tpd http://tfd-apigateway.weave.local/pipelines
-azure https://portal.azure.com/#home
-portal https://portal.azure.com/#home
-console https://console.cloud.google.com/home/dashboard
-outlook https://outlook.office365.com/mail/inbox
-ak https://github.com/Talend/tcommon-studio-se/pull/2633
-ais https://mail.google.com/mail/u/0/#inbox/FMfcgxwDqndCMVvwDxrLRVgZnmldvkMR
-jenkins https://jenkins-connectors.datapwn.com/job/connectors-se/job/master/
-calendar https://calendar.google.com/calendar/r/month
-cal https://calendar.google.com/calendar/r/month
-magnetdl https://www.magnetdl.com/
-apk android https://docs.google.com/spreadsheets/d/1Lq136G8YT50IPENDJnOTun1TV2zNhvOIZydeasBBars/edit#gid=0
-tckdoc https://talend.github.io/component-runtime/main/1.1.15/index.html
-sg https://particuliers.societegenerale.fr/
-torrentz-ok https://wwv.torrent9.cz/torrents/
-unicode test https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Unicode/Test
 hpdeskjet https://192.168.1.15/#
-trello https://trello.com/b/x6JibOOQ/tdi-retro
-news https://news.google.com/?hl=fr&gl=FR&ceid=FR:fr
-inst https://topbase.co/
-java8 udemy https://talend.udemy.com/course/modern-java-learn-java-8-features-by-coding-it/learn/lecture/11269588#overview
 java https://docs.oracle.com/en/java/index.html
+java8 udemy https://talend.udemy.com/course/modern-java-learn-java-8-features-by-coding-it/learn/lecture/11269588#overview
+jenkins https://jenkins-connectors.datapwn.com/
+magnetdl https://www.magnetdl.com/
+mail https://mail.google.com/mail/u/0/#inbox/FMfcgxwDqndCMVvwDxrLRVgZnmldvkMR
+news https://news.google.com/?hl=fr&gl=FR&ceid=FR:fr
+outlook https://outlook.office365.com/mail/inbox
+photos https://photos.google.com/
+portal https://portal.azure.com/#home
+romain https://rmannibucau.metawerx.net/
+sg https://particuliers.societegenerale.fr/
+tck doc https://talend.github.io/component-runtime/main/1.1.15/index.html
+tck jira issues https://jira.talendforge.org/projects/TCOMP/issues/TCOMP-1400?filter=allopenissues
+tck jira release notes jira https://jira.talendforge.org/secure/ConfigureReleaseNote.jspa?projectId=12130&version=25052
+tck jira settings https://jira.talendforge.org/plugins/servlet/project-config/TCOMP/summary
+torrentz-ok https://wwv.torrent9.cz/torrents/
+tpd http://tfd-apigateway.weave.local/pipelines
+tr https://translate.google.com/
+travis https://travis-ci.org/Talend/component-runtime?utm_medium=notification&utm_source=github_status
+trello https://trello.com/b/x6JibOOQ/tdi-retro
+unicode test https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Unicode/Test
+yt https://www.youtube.fr/
