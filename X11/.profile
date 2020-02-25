@@ -63,6 +63,8 @@ if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
 else
     eval $(gpg-agent --daemon)
 fi
+export GPG_DIR=~/.gnupg/
+export GPG_KEYNAME=E16448E7EC79DD12245C4ADFFA5FA52B5B7B42F0
 ################
 # Mail related #
 ################
@@ -121,3 +123,5 @@ export JAVA_HOME=/usr/lib/jvm/default
 export SOURCES=~/Code/Talend
 export TALEND_REGISTRY=registry.datapwn.com
 export GOOGLE_APPLICATION_CREDENTIALS=~/Dropbox/egallois-gcloud-key.json
+source ~/Dropbox/undx/private/work/tacokit-env.sh
+

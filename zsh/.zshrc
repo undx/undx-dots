@@ -68,6 +68,11 @@ setprompt() {
   RPROMPT=$'${vcs_info_msg_0_}'
 }
 setprompt
+case $TERM in
+  xterm*)
+    precmd () {print -Pn "\e]0;%~\a"}
+    ;;
+esac
 #
 # plugins with zplug
 # $ yay -S zplug
@@ -77,7 +82,7 @@ source /usr/share/zsh/scripts/zplug/init.zsh
 #
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "momo-lab/zsh-abbrev-alias"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
+#zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "hlissner/zsh-autopair", defer:2
 zplug "zsh-users/zsh-history-substring-search", defer:2
 zplug "djui/alias-tips"
@@ -101,32 +106,32 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load # --verbose
 #
-# fish shell like highlight
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
-# Highlight commands that contain rm -rf
-ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
-# Override highlighter colors
-ZSH_HIGHLIGHT_STYLES[default]=none
-ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=009
-ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=009,standout
-ZSH_HIGHLIGHT_STYLES[alias]=fg=darkgreen,bold
-ZSH_HIGHLIGHT_STYLES[builtin]=fg=orange,bold
-ZSH_HIGHLIGHT_STYLES[function]=fg=grey,bold
-ZSH_HIGHLIGHT_STYLES[command]=fg=darkgrey,bold
-ZSH_HIGHLIGHT_STYLES[precommand]=fg=white,underline
-ZSH_HIGHLIGHT_STYLES[commandseparator]=none
-ZSH_HIGHLIGHT_STYLES[hashed-command]=fg=009
-ZSH_HIGHLIGHT_STYLES[path]=fg=214,underline
-ZSH_HIGHLIGHT_STYLES[globbing]=fg=063
-ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=white,underline
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=none
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=none
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=none
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=blue
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=blue,bold
-ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=009
-ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=009
-ZSH_HIGHLIGHT_STYLES[assign]=none
+# # fish shell like highlight
+# ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+# # Highlight commands that contain rm -rf
+# ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
+# # Override highlighter colors
+# ZSH_HIGHLIGHT_STYLES[default]=none
+# ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=009
+# ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=009,standout
+# ZSH_HIGHLIGHT_STYLES[alias]=fg=darkgreen,bold
+# ZSH_HIGHLIGHT_STYLES[builtin]=fg=orange,bold
+# ZSH_HIGHLIGHT_STYLES[function]=fg=grey,bold
+# ZSH_HIGHLIGHT_STYLES[command]=fg=darkgrey,bold
+# ZSH_HIGHLIGHT_STYLES[precommand]=fg=white,underline
+# ZSH_HIGHLIGHT_STYLES[commandseparator]=none
+# ZSH_HIGHLIGHT_STYLES[hashed-command]=fg=009
+# ZSH_HIGHLIGHT_STYLES[path]=fg=214,underline
+# ZSH_HIGHLIGHT_STYLES[globbing]=fg=063
+# ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=white,underline
+# ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=none
+# ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=none
+# ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=none
+# ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=blue
+# ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=blue,bold
+# ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=009
+# ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=009
+# ZSH_HIGHLIGHT_STYLES[assign]=none
 #
 # zsh-notify : send notification when long running job ends
 #
