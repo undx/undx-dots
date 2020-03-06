@@ -621,5 +621,4 @@ https://jira.talendforge.org/browse/TDI-43085 [TDI-43085] Update Jackson librari
 https://jira.talendforge.org/issues/?filter=-5&jql=project%20%3D%20TDI%20AND%20resolution%20%3D%20Unresolved%20ORDER%20BY%20key%20DESC%2C%20priority%20DESC%2C%20updated%20DESC Create Issue - Talend Open Integration Solution
 https://www.messenger.com/t/florie.tereszkiewiez Messenger
 https://www.facebook.com/ Facebook
-https://talend365-my.sharepoint.com/:p:/r/personal/egallois_talend_com/_layouts/15/Doc.aspx?sourcedoc=%7B77644744-ECCD-4FBC-A22E-7A7A9F397076%7D&file=Presentation%202.pptx&action=edit&mobileredirect=true&wdNewAndOpenCt=1581938565568&wdPreviousSession=67d4ec79-88f0-44c2-a73f-4094db03fe68&wdOrigin=OFFICECOM-WEB.START.NEW Presentation 2.pptx
-https://jira.talendforge.org/projects/TCOMP/issues/TCOMP-1645?filter=allopenissues&orderby=created+DESC%2C+priority+DESC%2C+updated+DESC [TCOMP-1645] Ensure correct wording is used in @Documentation - Talend Open Integration Solution
+https://github.com/Talend/component-runtime/pull/421 TCOMP-1643 - Add automatic scheduling eviction system on LocalCache by clesaec · Pull Request #421 · Talend/component-runtime
