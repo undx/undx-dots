@@ -21,7 +21,7 @@ export EDITOR="gvim --nofork"
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 # history
-export HISTFILE=~/.histfile
+export HISTFILE=~/.history
 export HISTSIZE=100000
 export SAVEHIST=100000
 # bash
