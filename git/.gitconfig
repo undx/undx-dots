@@ -1,7 +1,7 @@
 [user]
   name = undx
   email = egallois@talend.com
-  signingkey = 2FD36EAAF03F8796
+  signingkey = ACB4643F83465C41CECEBE8C2FD36EAAF03F8796
 
 [core]
   editor = gvim '%*'
