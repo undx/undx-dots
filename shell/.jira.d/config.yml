@@ -1,6 +1,6 @@
 endpoint: https://jira.talendforge.org
 user: emmanuel_g
-password-source: pass
+password-source: gopass
 password-name: Work/Jira/emmanuel_g
 
 project: TDI
