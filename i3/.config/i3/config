@@ -481,6 +481,7 @@ exec_always --no-startup-id pgrep gnome-keyring-daemon || gnome-keyring-daemon
 exec_always --no-startup-id pgrep nm-applet || nm-applet
 exec_always --no-startup-id pgrep blueman-applet || blueman-applet
 exec_always --no-startup-id pgrep xscreensaver || xscreensaver -no-splash
+exec_always --no-startup-id razer-blackwidow.sh
 #exec_always --no-startup-id pgrep dunst || dunst
 #exec_always --no-startup-id pgrep compton  || compton -f
 exec_always --no-startup-id pgrep autokey-gtk || autokey-gtk
