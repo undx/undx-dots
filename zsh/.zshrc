@@ -7,11 +7,14 @@ autoload -Uz $ZSH_HOME/functions/**/*(.:t)
 #
 setopt histignoredups
 setopt EXTENDED_HISTORY
+setopt HIST_BEEP
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
-setopt HIST_NO_STORE
 setopt HIST_REDUCE_BLANKS
+setopt HIST_SAVE_NO_DUPS
 setopt HIST_VERIFY
 #
 typeset -U path
@@ -257,6 +260,9 @@ alias dots="cd ~/Code/local/undx-dots"
 alias cse="cd ~/Code/Talend/connectors-se"
 alias cee="cd ~/Code/Talend/connectors-ee"
 alias crt="cd ~/Code/Talend/component-runtime"
+# sxiv
+# never remember the correct naming...
+alias i="sxiv"
 # neovim
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
@@ -267,6 +273,7 @@ fi
 #
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey '^[[3~' delete-char
 #
 #
 #
