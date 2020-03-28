@@ -57,11 +57,11 @@ font pango: Ubuntu Mono, Font Awesome 5 Free 16
 # client.background: Background color which will be used to paint the background of the client window on top of which the client will be rendered. Only clients which do not cover the whole area of this window expose the color. Note that this colorclass only takes a single color.
 ##################################################
 #class                  border  backgr. text    indicator child_border
-client.focused          #fe8019 #90A959 #ffffff #d65d0e   #2e9ef4
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #990000 #ffffff #990000   #990000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.focused          #fe8019 #90A959 #ffffff #ffd700   #2e9ef4
+client.focused_inactive #333333 #5f676a #ffffff #ffd700   #5f676a
+client.unfocused        #333333 #222222 #888888 #ffd700   #222222
+client.urgent           #2f343a #990000 #ffffff #ffd700   #990000
+client.placeholder      #000000 #0c0c0c #ffffff #ffd700   #0c0c0c
 client.background       #ffffff
 
 # top bar
@@ -483,7 +483,7 @@ exec_always --no-startup-id pgrep blueman-applet || blueman-applet
 exec_always --no-startup-id pgrep xscreensaver || xscreensaver -no-splash
 exec_always --no-startup-id razer-blackwidow.sh
 #exec_always --no-startup-id pgrep dunst || dunst
-#exec_always --no-startup-id pgrep compton  || compton -f
+exec_always --no-startup-id pgrep compton  || compton -f
 exec_always --no-startup-id pgrep autokey-gtk || autokey-gtk
 exec_always --no-startup-id pgrep copyq || copyq
 exec_always --no-startup-id pgrep dropbox || dropbox start
@@ -497,16 +497,16 @@ exec --no-startup-id xautolock -locker "i3lock -ni <(import -silent -window root
 #
 # ui
 exec --no-startup-id xsetroot -solid black
-exec --no-startup-id feh --bg-fil  ~/Dropbox/media/images/Wallpapers/hokusai-wave.jpg
+exec --no-startup-id feh --bg-fil ~/Dropbox/Media/Pictures/Wallpapers/hokusai-wave.jpg
 # my apps
 #exec --no-startup-id google-chrome-stable --restore-last-session
 exec --no-startup-id qutebrowser
 exec --no-startup-id slack
 exec --no-startup-id ~/bin/Telegram/Telegram
 # admin session and monitoring
-exec --no-startup-id $term -n sudo       -e sudo su -
+#exec --no-startup-id $term -n sudo       -e sudo su -
 exec --no-startup-id $term -n journalctl -e journalctl -f
 exec --no-startup-id $term -n xerrors    -e tail -f ~/.xsession-errors
 # scratchpads
 exec --no-startup-id $term -n shelly
-exec --no-startup-id $term -n calcy -e bc -ilq
+#exec --no-startup-id $term -n calcy -e bc -ilq
