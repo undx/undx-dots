@@ -232,12 +232,15 @@ zplug load # --verbose
 #/usr/share/icons/Adwaita/64x64/status/weather-clear-symbolic.symbolic.png
 #/usr/share/icons/Adwaita/64x64/status/weather-severe-alert-symbolic.symbolic.png
 zstyle ':notify:*' activate-terminal yes
-zstyle ':notify:*' error-icon    "/usr/share/icons/Adwaita/64x64/status/weather-severe-alert-symbolic.symbolic.png"
-#zstyle ':notify:*' error-sound   "Glass"
-zstyle ':notify:*' error-title   "Command failed (in #{time_elapsed} seconds)"
-zstyle ':notify:*' success-icon  "/usr/share/icons/Adwaita/64x64/status/weather-clear-symbolic.symbolic.png"
-#zstyle ':notify:*' success-sound "default"
-zstyle ':notify:*' success-title "Command finished (in #{time_elapsed} seconds)"
+#
+zstyle ':notify:*' error-title "wow such #FAIL (in #{time_elapsed} seconds)"
+zstyle ':notify:*' error-icon "/home/undx/Dropbox/Media/Pictures/System/dog-error-101.gif"
+#zstyle ':notify:*' error-icon    "/usr/share/icons/Adwaita/64x64/status/weather-severe-alert-symbolic.symbolic.png"
+zstyle ':notify:*' error-sound "/home/undx/Dropbox/Media/Sounds/mphg-ni.wav"
+zstyle ':notify:*' success-title "very #SUCCESS. wow !!! (in #{time_elapsed} seconds)"
+zstyle ':notify:*' success-icon "/home/undx/Dropbox/Media/Pictures/System/doc-succes.gif"
+#zstyle ':notify:*' success-icon  "/usr/share/icons/Adwaita/64x64/status/weather-clear-symbolic.symbolic.png"
+zstyle ':notify:*' success-sound "/home/undx/Dropbox/Media/Sounds/process-complete.wav"
 #
 #
 # abbrev-alias as vim's abbrev
@@ -274,6 +277,7 @@ fi
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^[[3~' delete-char
+bindkey '^[[F' end-of-line
 #
 #
 #
@@ -293,10 +297,11 @@ source /usr/share/fzf/fzf-extras.zsh
 #
 #
 # docker
-alias dckps="docker ps --all --format '[{{.ID}}] {{.Names}}\t({{.Image}})\t\t~ {{.Status}}'"
+alias dckps="docker ps --filter=status=running --format 'table {{.ID}}\t{{.Names}}\t({{.Image}})'"
+alias dckpsl="docker ps --filter=status=running --format 'table {{.ID}}\t{{.Names}}\t({{.Image}})\t{{.Ports}}'"
 alias dckimg="docker images | head -15"
+alias dckimgl="docker images | head -30"
 # jira
 eval "$(jira --completion-script-zsh)"
 # get TPD functions
 . ~/Dropbox/undx/streams.sh
-
