@@ -1,0 +1,15 @@
+# intellij project files
+*.iml
+.idea/
+#
+# binaries
+*.o
+#
+# Node
+npm-debug.log
+#
+# # Mac
+.DS_Store
+#
+# # Windows
+Thumbs.db

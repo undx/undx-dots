@@ -1,0 +1,52 @@
+[Default Applications]
+application/epub+zip=org.pwmt.zathura.desktop
+application/pdf=org.pwmt.zathura.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
+application/x-compressed-tar=org.gnome.FileRoller.desktop
+application/x-java-archive=org.gnome.FileRoller.desktop
+application/x-zoom=Zoom.desktop
+application/xhtml+xml=org.qutebrowser.qutebrowser.desktop
+application/xml=gvim.desktop
+application/zip=org.gnome.FileRoller.desktop
+image/jpeg=sxiv-rifle.desktop
+image/png=sxiv-rifle.desktop
+inode/directory=nemo.desktop
+text/csv=gvim.desktop
+text/html=org.qutebrowser.qutebrowser.desktop
+text/plain=gvim.desktop
+video/mp4=mpv.desktop
+video/x-matroska=mpv.desktop
+x-scheme-handler/about=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/ftp=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/tg=telegramdesktop.desktop
+x-scheme-handler/unknown=firefox.desktop
+x-scheme-handler/zoommtg=Zoom.desktop
+
+[Added Associations]
+application/epub+zip=org.pwmt.zathura.desktop;
+application/pdf=org.pwmt.zathura.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;
+application/x-compressed-tar=org.gnome.FileRoller.desktop;
+application/x-gzip=org.gnome.FileRoller.desktop;
+application/x-java-archive=org.gnome.FileRoller.desktop;
+application/x-java=intellij.desktop;
+application/xhtml+xml=org.qutebrowser.qutebrowser.desktop;
+application/xml=gvim.desktop;
+application/zip=org.gnome.FileRoller.desktop;
+image/jpeg=sxiv.desktop;sxiv-rifle.desktop;
+image/png=sxiv-thumbnails.desktop;sxiv-rifle.desktop;
+inode/directory=sxiv-thumbnails.desktop;nemo.desktop;
+text/csv=gvim.desktop;
+text/plain=gvim.desktop;
+text/x-java=gvim.desktop;
+video/mp4=mpv.desktop;
+video/x-matroska=mpv.desktop;
+
+[Removed Associations]
+video/H264=baz.desktop
+
+# Added Associations   : support opening that MIME type.
+# Removed Associations : do not support that MIME type.
+# Default Applications : should be the default choice for opening that MIME type.

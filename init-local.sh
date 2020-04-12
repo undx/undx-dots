@@ -18,11 +18,10 @@ echo "*** stowing files to $TARGET"
 
 # dics
 # emacs - create directory to avoid that private sub folder to be skipped
-mkdir $TARGET/.emacs.d/
 stow -v$VERBOSE emacs.d -t $TARGET
 #
 stow -v$VERBOSE git -t $TARGET
-stow -v$VERBOSE i3 -t $TARGET
+stow -v$VERBOSE wm  -t $TARGET
 #
 mkdir -p $TARGET/.local/share/{applications,fonts,nemo}
 stow -v$VERBOSE local -t $TARGET
@@ -30,8 +29,6 @@ stow -v$VERBOSE local -t $TARGET
 mkdir -p $TARGET/.config/mpv/scripts
 mkdir -p $TARGET/.config/zathura
 stow -v$VERBOSE media -t $TARGET
-# mutt
-stow -v$VERBOSE neomutt -t $TARGET
 #
 stow -v$VERBOSE shell -t $TARGET
 stow -v$VERBOSE vim -t $TARGET

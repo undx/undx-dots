@@ -2,14 +2,16 @@
   name = undx
   email = egallois@talend.com
   signingkey = ACB4643F83465C41CECEBE8C2FD36EAAF03F8796
+  #signingkey = 2FD36EAAF03F8796
 
 [core]
-  editor = gvim '%*'
+  editor = gvim --nofork '%*'
 #	editor = emacsclient -a runemacs '%*'
-  autocrlf = input
+  #autocrlf = input
   longpaths = true
   # Don't consider trailing space change as a cause for merge conflicts
   whitespace = -trailing-space
+  excludesfile = /home/undx/.gitignore
 
 [color]
   ui = true
@@ -69,5 +71,6 @@
 
 [mergetool "meld"]
   cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+
 [commit]
   gpgsign = true

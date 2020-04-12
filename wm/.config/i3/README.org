@@ -1,0 +1,8 @@
+# i3wm
+
+
+
+## i3blocks
+This issue is not fixed with AUR (even -git) https://github.com/vivien/i3blocks/issues/334, so use
+: git clone https://github.com/vivien/i3blocks
+
