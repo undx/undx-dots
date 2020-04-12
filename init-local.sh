@@ -1,6 +1,8 @@
 #!/bin/sh
 # verbose level
 VERBOSE=1
+# 
+touch ~/.stow-global-ignore
 # destinattion target
 TARGET=${1:-~}
 if [ ! -d "$TARGET" ]; then
