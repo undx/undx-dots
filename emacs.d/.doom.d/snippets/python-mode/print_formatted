@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: print formatted
+# key: pf
+# --
+print("{}$0".format($1))

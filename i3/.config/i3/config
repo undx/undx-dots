@@ -1,47 +1,11 @@
 ##################################################
 # some vars #
 ##################################################
-set $term    --no-startup-id st
+#set $term    --no-startup-id st
+set $term    --no-startup-id alacritty
 set $browser --no-startup-id surf
 set $fm      --no-startup-id st -c ranger  -e ranger
 set $mua     --no-startup-id st -c neomutt -e neomutt
-##################################################
-# colors #
-##################################################
-set $green  #90A959
-set $lblue  #6A9FB5
-set $urgent #990000
-set $orange_0 #fe8019
-set $orange_1 #d65d0e
-set $orange_2 #af3a03
-
-# colors form .Xresources
-set_from_resource $fg    foreground
-set_from_resource $bg    background
-set_from_resource $fbg   color8
-set_from_resource $col0  color0  #000000
-set_from_resource $col1  color1  #000000
-set_from_resource $col2  color2  #000000
-set_from_resource $col3  color3  #000000
-set_from_resource $col4  color4  #000000
-set_from_resource $col5  color5  #000000
-set_from_resource $col6  color6  #000000
-set_from_resource $col7  color7  #000000
-set_from_resource $col8  color8  #000000
-set_from_resource $col9  color9  #000000
-set_from_resource $col10 color10 #000000
-set_from_resource $col11 color11 #000000
-set_from_resource $col12 color12 #000000
-set_from_resource $col13 color13 #000000
-set_from_resource $col14 color14 #000000
-set_from_resource $col15 color15 #000000
-
-
-# client.focused          $fbg $fbg $fbg $fbg
-# client.focused_inactive $bg $bg $bg $bg
-# client.unfocused        $bg $bg $bg $bg
-# client.urgent           $bg $bg $bg $bg
-
 #################################################
 # fonts #
 ##################################################
@@ -63,41 +27,42 @@ client.unfocused        #333333 #222222 #888888 #ffd700   #222222
 client.urgent           #2f343a #990000 #ffffff #ffd700   #990000
 client.placeholder      #000000 #0c0c0c #ffffff #ffd700   #0c0c0c
 client.background       #ffffff
-
+#
 # top bar
 bar {
   id bar-top
-    position top
-    status_command i3blocks -c ~/.config/i3/i3blocks-top.conf
-    tray_output primary
-    separator_symbol ":"
-    workspace_buttons  yes
+  position top
+  status_command i3blocks -c ~/.config/i3/i3blocks-top.conf
+  tray_output primary
+  separator_symbol ":"
+  workspace_buttons  yes
 # mode dock ?
 # modifier None ?
-    colors {
-      background #000000
-        separator #666666
-        statusline #EEEEEE
-#                 <border> <backgd> <text>
-        focused_workspace #111111  #111111 #d65d0e
-        active_workspace   #333333 #5f676a #ffffff
-        inactive_workspace #333333 #222222 #888888
-        urgent_workspace   #2f343a #900000 #ffffff
-        binding_mode       #2f343a #900000 #ffffff
-    }
+#                      border  backgd  text
+  colors {
+    background #000000
+    separator  #666666
+    statusline #EEEEEE
+    focused_workspace  #111111 #111111 #d65d0e
+    active_workspace   #333333 #5f676a #ffffff
+    inactive_workspace #333333 #222222 #888888
+    urgent_workspace   #2f343a #900000 #ffffff
+    binding_mode       #2f343a #900000 #ffffff
+  }
 }
+#
 # bottom bar
 bar {
-    id bar-bottom
-    position bottom
-    status_command i3blocks -c ~/.config/i3/i3blocks-bottom.conf
-    workspace_buttons no
+  id bar-bottom
+  position bottom
+  status_command i3blocks -c ~/.config/i3/i3blocks-bottom.conf
+  workspace_buttons no
 }
 ##################################################
 # I3 Gaps
 ##################################################
 gaps inner 10
-gaps outer 10
+gaps outer 5
 smart_borders on
 smart_gaps    on
 ##################################################
@@ -173,7 +138,15 @@ for_window [class="Darktable"]    move workspace $ws_darktable
 # enable floating mode and move container to workspace 4:
 # for_window [class="^evil-app$"] floating enable, move container to workspace 4
 #
-
+# intellij fixes
+# see https://www.reddit.com/r/i3wm/comments/8gh4c0/working_fix_for_focusing_intellij_popups/
+for_window [class="^jetbrains-.+"][window_type=dialog] focus
+# I also had to add the following to make menus look like menu and not like a window:
+for_window [instance="sun-awt-X11-XWindowPeer"] border pixel 0
+#
+# Execute script when any new window is opened
+# for_window [class=.*] exec /path/to/script
+# for_window [instance="weather"] exec /path/to/script
 #
 # Bindings to make the webcam float and stick.
 for_window [title="mpvfloat"] floating enable
@@ -204,8 +177,8 @@ assign [title="Talend.Studio.*"] $ws0
 focus_follows_mouse yes
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier Mod1
-# set popups during fullscreen mode
-popup_during_fullscreen smart
+# set popups during fullscreen mode : smart, ignore, leave_fullscreen
+popup_during_fullscreen leave_fullscreen
 ##################################################
 # Key bindings
 ##################################################
@@ -322,7 +295,7 @@ bindsym $mod+minus scratchpad show, floating toggle
 
 for_window [title="passwords.kdbx"] floating enable, move position center, border normal 2, move scratchpad
 # scratchpad terminal
-exec --no-startup-id $term -c ScratchPad
+exec $term -c ScratchPad
 for_window [class="ScratchPad"] floating enable, resize set 1366 384, move position 0 18, move scratchpad
 bindsym F12 [class="ScratchPad"] scratchpad show
 
@@ -338,17 +311,17 @@ bindsym $mod+u [urgent=latest] focus
 #
 #
 # start a terminal
-bindsym $mod+Return       exec --no-startup-id $term
-bindsym $mod+Shift+Return exec --no-startup-id i3-samedir
+bindsym $mod+Return       exec $term
+bindsym $mod+Shift+Return exec $term --working-directory="$(xcwd)"
 # screenshot
 bindsym Print            exec --no-startup-id i3-screenshot
 bindsym $mod+Ctrl+$alt+p exec --no-startup-id i3-screenshot
 # file manager
-bindsym $mod+Home exec nemo
-bindsym $mod+Shift+Home  exec $term -n ranger -e ranger
+bindsym $mod+Home        exec nemo
+bindsym $mod+Shift+Home  exec nemo $(xcwd)
 # process management
-bindsym $mod+Shift+Delete exec $term -n htop -e htop
-bindsym $mod+Delete       exec $term -n htop -e htop
+bindsym $mod+Shift+Delete exec $term -t htop -e htop
+bindsym $mod+Delete       exec $term -t htop -e htop
 # sound management
 set $volumemute pamixer -t
 set $volumeup   pamixer -i 5 -u
@@ -376,7 +349,7 @@ bindsym $mod+Shift+k		move up 30
 bindsym $mod+Shift+j		move down 30
 bindsym $mod+Shift+h		move left 30
 #
-bindsym $mod+F10			exec $term -n calcy -e bc -lq # ddspawn tmuxdd
+bindsym $mod+F10			exec $term -t calcy -e bc -lq # ddspawn tmuxdd
 bindsym $mod+F11			exec --no-startup-id ddspawn dropdowncalc -f mono:pixelsize=24
 # edit selection in gvim and set edited content to clipboard
 bindsym $mod+$alt+v exec edit-in-gvim
@@ -404,6 +377,11 @@ mode "$mode_launcher" {
 bindsym $mod+o mode "$mode_launcher"
 #
 # resize window (you can also use the mouse for that)
+bindsym $mod+Ctrl+Left        resize shrink width  10 px or 10 ppt
+bindsym $mod+Ctrl+Down        resize grow   height 10 px or 10 ppt
+bindsym $mod+Ctrl+Up          resize shrink height 10 px or 10 ppt
+bindsym $mod+Ctrl+Right       resize grow   width  10 px or 10 ppt
+
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
         bindsym Left        resize shrink width  10 px or 10 ppt
@@ -435,6 +413,11 @@ bindsym Ctrl+$mod+$alt+Delete mode "$mode_system"
 bindsym Ctrl+$mod+$alt+l  exec --no-startup-id $Locker
 #
 # gaps
+bindsym $mod+'}' gaps inner current plus 5
+bindsym $mod+'{' gaps inner current minus 5
+bindsym $mod+']'' gaps outer current plus 5
+bindsym $mod+'[' gaps outer current minus 5
+#
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -447,7 +430,7 @@ mode "$mode_gaps" {
     bindsym Escape mode "default"
 }
 mode "$mode_gaps_inner" {
-    bindsym equal gaps inner current plus 5
+    bindsym equal gaps inner current plus  5
     bindsym minus gaps inner current minus 5
     bindsym 0     gaps inner current set 0
 
@@ -481,15 +464,14 @@ exec_always --no-startup-id pgrep gnome-keyring-daemon || gnome-keyring-daemon
 exec_always --no-startup-id pgrep nm-applet || nm-applet
 exec_always --no-startup-id pgrep blueman-applet || blueman-applet
 exec_always --no-startup-id pgrep xscreensaver || xscreensaver -no-splash
-exec_always --no-startup-id razer-blackwidow.sh
-#exec_always --no-startup-id pgrep dunst || dunst
-exec_always --no-startup-id pgrep compton  || compton -f
+#exec_always --no-startup-id pgrep compton  || compton -f
 exec_always --no-startup-id pgrep autokey-gtk || autokey-gtk
 exec_always --no-startup-id pgrep copyq || copyq
 exec_always --no-startup-id pgrep dropbox || dropbox start
 exec_always --no-startup-id pgrep numlockx || numlockx on
-exec_always --no-startup-id dunst -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "fg" -cf "$fg" -nf "$fg" -fn "ypn envypn 12" -s -geometry "400x60-10+40" -format "<b>%s</b>\n%b" -shrink  -lto 3 -nto 5 -cto 0 -align "left" -transparency 0 -padding 8 -horizontal_padding 8
-#                                delay rate
+exec_always --no-startup-id pgrep dunst || dunst
+exec_always --no-startup-id razer-blackwidow.sh
+# delay rate
 #exec --no-startup-id xset r rate 300   80
 # lock
 # i3-lock : /usr/bin/i3lock -ni <(import -silent -window root png:- | mogrify -blur 0x40 png:-)
@@ -505,8 +487,8 @@ exec --no-startup-id slack
 exec --no-startup-id ~/bin/Telegram/Telegram
 # admin session and monitoring
 #exec --no-startup-id $term -n sudo       -e sudo su -
-exec --no-startup-id $term -n journalctl -e journalctl -f
-exec --no-startup-id $term -n xerrors    -e tail -f ~/.xsession-errors
+exec $term -t journalctl -e journalctl -f
+exec $term -t xerrors    -e tail -f ~/.xsession-errors
 # scratchpads
-exec --no-startup-id $term -n shelly
+exec $term -t shelly
 #exec --no-startup-id $term -n calcy -e bc -ilq

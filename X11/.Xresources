@@ -1,24 +1,37 @@
 !
 ! name.Class.resource: value
 !
-#ifndef MON_DPI
-    #define MON_DPI 96
-#endif
 
-#ifndef CURSOR_SIZE
-    #define CURSOR_SIZE 24
-#endif
 
-#ifndef FONT_SIZE
-    #define FONT_SIZE 18
-#endif
-
-!!!!! Solarized light (|dark)
-#include ".xresources/solarized-Xresources.light"
 !
+! #ifndef MON_DPI
+!     #define MON_DPI 96
+! #endif
+! #ifndef CURSOR_SIZE
+!     #define CURSOR_SIZE 24
+! #endif
+! #ifndef FONT_SIZE
+!     #define FONT_SIZE 18
+! #endif
 !##############!
 !### Colors ###!
 !##############!
+!
+!!!!! Solarized light (|dark)
+!#include ".xresources/solarized-Xresources.light"
+! not bad
+! light
+#include ".xresources/tempus_totus.Xcolors"
+! dark
+!#include ".xresources/tempus_tempest.Xcolors"
+!
+!#include ".xresources/tempus_day.Xcolors"
+!#include ".xresources/tempus_dawn.Xcolors"
+!#include ".xresources/tempus_winter.Xcolors"
+!
+!#include ".xresources/tempus_summer.Xcolors"
+!#include ".xresources/tempus_past.Xcolors"
+!
 ! (x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)
 ! Black + DarkGrey
 !!! *color0  : #000000
@@ -28,8 +41,7 @@
 !!! *color9  : #FF5555
 !!! ! DarkGreen + Green
 !!! *color2  : #00AA00
-!!! *color10 : #55FF55
-!!! ! DarkYellow + Yellow
+!!! *color10 : #!!! ! DarkYellow + Yellow
 !!! *color3  : #AA5500
 !!! *color11 : #FFFF55
 !!! ! DarkBlue + Blue
@@ -59,7 +71,7 @@
 !*.font: xft:Ubuntu Mono:style=Regular:size=18:antialias=true:hinting=true
 !*.font: xft:Monospace:size=18
 !*.font: Fira Code-18
-rofi.font: Ubuntu Mono 18
+rofi.font: Ubuntu Mono 28
 !rofi.font: Fira Code 18
 !###############!
 !### Xcursor ###!
@@ -77,7 +89,7 @@ Xft*hintstyle:	    hintslight
 !####################!
 ! no scrollbar
 URxvt*scrollBar: False
-URxvt*geometry: 120x40 
+URxvt*geometry: 120x40
 ! underline and links
 URxvt.colorUL: #4682B4
 URxvt*cursorBlink: true
@@ -118,12 +130,14 @@ URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 URxvt.keysym.M-s:           perl:keyboard-select:search
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! ST
-!! Transparency (0-1):
-st.alpha: 0.92
-!! Set a default font and font size as below:
-st.font: Monospace-16
+!! alpha - transparency (0.0-1.0)
+st.alpha: 1
+st.font: JetBrainsMono-16
+! st.font: Ubuntu Mono-19
 ! st.termname: st-256color
 ! st.borderpx: 2;
+! st -f "Liberation Mono:size=12"
+! st -f 'Liberation Mono-12'
 
 emacs.alpha: 1
 
@@ -138,13 +152,13 @@ sudo.*foreground: #ffffff
 sudo.*background: #990000
 ! journal logging
 journalctl.font: Monospace-12
-journalctl.*foreground: #000000 
+journalctl.*foreground: #000000
 journalctl.*background: #eeeeee
 ! xsession-errors logging
 xerrors.font: Monospace-12
-xerrors.*foreground: #000000 
+xerrors.*foreground: #000000
 xerrors.*background: #eeefff
-! ranger FM             
+! ranger FM
 ranger.font: Monospace-16
 ! htop
 htop.font: Monospace-16

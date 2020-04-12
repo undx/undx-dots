@@ -159,12 +159,13 @@ $(ssh_info)%{$fg[magenta]%}%~%u $(git_info)
 }
 setprompt
 case $TERM in
-  xterm*)
+  xterm*|rxvt*|st*|alacritty)
+    #PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
     precmd () {
       vcs_info
       print -Pn "\e]0;%~\a"
-  }
-    ;;
+    }
+  ;;
 esac
 #
 # plugins with zplug
@@ -229,15 +230,14 @@ zplug load # --verbose
 # zsh-notify : send notification when long running job ends
 #
 #
-#/usr/share/icons/Adwaita/64x64/status/weather-clear-symbolic.symbolic.png
-#/usr/share/icons/Adwaita/64x64/status/weather-severe-alert-symbolic.symbolic.png
 zstyle ':notify:*' activate-terminal yes
+zstyle ':notify:*' command-complete-timeout 15
 #
-zstyle ':notify:*' error-title "wow such #FAIL (in #{time_elapsed} seconds)"
+zstyle ':notify:*' error-title "Such #FAIL!(#{time_elapsed})"
 zstyle ':notify:*' error-icon "/home/undx/Dropbox/Media/Pictures/System/dog-error-101.gif"
 #zstyle ':notify:*' error-icon    "/usr/share/icons/Adwaita/64x64/status/weather-severe-alert-symbolic.symbolic.png"
 zstyle ':notify:*' error-sound "/home/undx/Dropbox/Media/Sounds/mphg-ni.wav"
-zstyle ':notify:*' success-title "very #SUCCESS. wow !!! (in #{time_elapsed} seconds)"
+zstyle ':notify:*' success-title "#SUCCESS! (#{time_elapsed})"
 zstyle ':notify:*' success-icon "/home/undx/Dropbox/Media/Pictures/System/doc-succes.gif"
 #zstyle ':notify:*' success-icon  "/usr/share/icons/Adwaita/64x64/status/weather-clear-symbolic.symbolic.png"
 zstyle ':notify:*' success-sound "/home/undx/Dropbox/Media/Sounds/process-complete.wav"
@@ -251,6 +251,8 @@ abbrev-alias -g rgp="| rg --passthru"
 abbrev-alias -g duc="~/Dropbox/undx/config/"
 abbrev-alias -g cloc="~/Code/local/"
 abbrev-alias -g ctal="~/Code/Talend/"
+# never remember the correct naming...
+abbrev-alias i="sxiv"
 #
 # classic aliases
 #
@@ -261,11 +263,10 @@ alias lh="ls -lah"
 alias  l="ls -1"
 alias dots="cd ~/Code/local/undx-dots"
 alias cse="cd ~/Code/Talend/connectors-se"
-alias cee="cd ~/Code/Talend/connectors-ee"
+alias cee="cd ~/Code/Talend/cloud-components"
+alias ccc="cd ~/Code/Talend/cloud-components"
 alias crt="cd ~/Code/Talend/component-runtime"
 # sxiv
-# never remember the correct naming...
-alias i="sxiv"
 # neovim
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
@@ -301,6 +302,7 @@ alias dckps="docker ps --filter=status=running --format 'table {{.ID}}\t{{.Names
 alias dckpsl="docker ps --filter=status=running --format 'table {{.ID}}\t{{.Names}}\t({{.Image}})\t{{.Ports}}'"
 alias dckimg="docker images | head -15"
 alias dckimgl="docker images | head -30"
+alias term="alacritty"
 # jira
 eval "$(jira --completion-script-zsh)"
 # get TPD functions

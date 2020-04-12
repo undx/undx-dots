@@ -10,6 +10,7 @@
 *.DS_Store
 *.dat
 *.directory
+*.elc
 *.log
 *.org-id-locations
 *.pid
@@ -26,6 +27,7 @@
 **/.emacs.d/org-gcal/
 **/.emacs.d/recentf
 **/.emacs.d/smex-items
+**/.doom.d/last-working/*
 **/.config/gtk-3.0/bookmarks
 **/.config/ranger/bookmarks
 **/.config/ranger/history
@@ -39,4 +41,5 @@
 **/.vim/swap
 **/.vim/plugged
 # misc unwanted
+www/.config/qutebrowser/bookmarks/urls
 readability.html

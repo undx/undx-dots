@@ -1,0 +1,62 @@
+#!/bin/bash
+
+SYMBOL_SPEAKERS="\uf028"
+SYMBOL_HEADPHONES="\uf025"
+SYMBOL_MUTED="\uf025"
+SYMBOL_ON_COLOR="#FFCC33"
+SYMBOL_OFF_COLOR="#191919"
+
+
+case $BLOCK_BUTTON in
+  # left click, mute/unmute
+  1) amixer -q -D $MIXER sset $SCONTROL $(capability) toggle ;;
+  # right click, enable/disable speakers
+  3) amixer -q -c 0 sset "HP/Speaker Auto Detect" playback toggle ;;
+  # scroll up, increase
+  4) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}+ unmute ;;
+  # scroll down, decrease
+  5) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}- unmute ;;
+esac
+
+echo -e "<span font='12' color='${color}'>${symbol}</span><span font='4'> </span><span>${value}</span>"
+
+[webcam]
+command=~/.i3/webcam
+interval=once
+markup=pango
+signal=11
+
+[microphone]
+command=~/.i3/microphone
+interval=once
+markup=pango
+signal=11
+
+
+
+
+# network
+ETH_SYMBOL="\uf0e8"
+WIFI_SYMBOL="\uf1eb"
+SIZE="12"
+ON_COLOR="#FFCC33"
+OFF_COLOR="#333333"
+
+ip_route=$(ip route)
+is_eth=$(echo ${ip_route} | grep "eth")
+is_wifi=$(echo ${ip_route} | grep "wlan")
+
+if [[ ! -z "${is_eth}" ]]; then
+    symbol=${ETH_SYMBOL}
+      color=${ON_COLOR}
+    elif [[ ! -z "${is_wifi}" ]]; then
+        symbol=${WIFI_SYMBOL}
+          color=${ON_COLOR}
+        else
+            symbol=${WIFI_SYMBOL}
+              color=${OFF_COLOR}
+fi
+
+echo -e "<span font='${SIZE}' color='${color}'>${symbol}</span>"
+echo -e "<span font='${SIZE}' color='${color}'>${symbol}</span>"
+
