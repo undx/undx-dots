@@ -1,0 +1,260 @@
+# vim: ft=cf
+#
+#
+# standard options
+set ratios    1:2
+set drawbox   true
+set icons     true
+set color256  true
+set smartcase true
+set timefmt   "2006-01-02 15:04:05"
+set info      size:time
+set preview   true
+#set previewer shell-preview
+set previewer pistol
+#
+#
+# interpreter for shell commands (needs to be POSIX compatible)
+set shell sh
+# set '-eu' options for shell commands
+# These options are used to have safer shell commands. Option '-e' is used to
+# exit on error and option '-u' is used to give error for unset variables.
+# Option '-f' disables pathname expansion which can be useful when $f, $fs, and
+# $fx variables contain names with '*' or '?' characters. However, this option
+# is used selectively within individual commands as it can be limiting at
+# times.
+set shellopts '-eu'
+
+# set internal field separator (IFS) to "\n" for shell commands
+# This is useful to automatically split file names in $fs and $fx properly
+# since default file separator used in these variables (i.e. 'filesep' option)
+# is newline. You need to consider the values of these options and create your
+# commands accordingly.
+set ifs "\n"
+
+# leave some space at the top and the bottom of the screen
+set scrolloff 10
+#
+#
+#
+# Commands
+#
+# $f   current file
+# $fs  selected file(s) separated with 'filesep'
+# $fx  current file or selected file(s) if any
+# $id  id number of the client
+#
+# define a custom 'open' command
+# This command is called when current file is not a directory. You may want to
+# use either file extensions and/or mime types here. Below uses an editor for
+# text files and a file opener for the rest.
+cmd open ${{
+  case $(file --mime-type $f -b) in
+    text/*) $EDITOR $fx;;
+    *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
+  esac
+}}
+
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd chmod ${{
+  printf "Mode Bits: "
+  read ans
+  for file in "$fx"
+  do
+    chmod $ans $file
+  done
+ }}
+
+cmd sudomkfile ${{
+  printf "File Name: "
+  read ans
+  sudo $EDITOR $ans
+}}
+
+# define a custom 'rename' command without prompt for overwrite
+# cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
+# map r push :rename<space>
+
+# Trash cli bindings
+cmd trash ${{
+  files=$(echo "$fx" | sed "s/ /\\\ /g;s/\[/\\\[/g;s/\]/\\\]/g")
+  IFS=$'\n'
+  for file in $files
+  do
+    trash-put "$(basename "$file")"
+  done
+}}
+
+cmd clear_trash   %trash-empty
+cmd restore_trash %trash-restore
+
+# define a custom 'delete' command
+# cmd delete ${{
+#     set -f
+#     printf "$fx\n"
+#     printf "delete?[y/n]"
+#     read ans
+#     [ $ans = "y" ] && rm -rf $fx
+# }}
+
+# use '<delete>' key for either 'trash' or 'delete' command
+# map <delete> trash
+# map <delete> delete
+
+# extract the current file with the right command
+# (xkcd link: https://xkcd.com/1168/)
+cmd extract ${{
+  set -f
+  case $f in
+    *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+    *.tar.gz|*.tgz) tar xzvf $f;;
+    *.tar.xz|*.txz) tar xJvf $f;;
+    *.zip) unzip $f;;
+    *.rar) unrar x $f;;
+    *.7z) 7z x $f;;
+  esac
+}}
+
+# compress current file or selected files with tar and gunzip
+cmd tar ${{
+  set -f
+  mkdir $1
+  cp -r $fx $1
+  tar czf $1.tar.gz $1
+  rm -rf $1
+}}
+
+# compress current file or selected files with zip
+cmd zip ${{
+  set -f
+  mkdir $1
+  cp -r $fx $1
+  zip -r $1.zip $1
+  rm -rf $1
+}}
+
+cmd zip2    %zip -r "$f" "$f"
+cmd tar2    %tar cvf "$f.tar" "$f"
+cmd targz2  %tar cvzf "$f.tar.gz" "$f"
+cmd tarbz21 %tar cjvf "$f.tar.bz2" "$f"
+
+cmd fzf_jump ${{
+  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+# ########
+# mappings
+# ########
+# unmap some stuff
+#
+# marks
+map m
+#map "
+#map '
+#
+map z
+map za
+map zh
+map zn
+map zr
+map zs
+map zt
+
+# loving Emacs
+cmap <c-g> cmd-escape
+
+map <a-1> set ratios 1:2
+map <a-2> set ratios 1:2
+map <a-3> set ratios 1:2:3
+map <a-4> set ratios 1:2:3:4
+map <a-5> set ratios 1:2:3:4:5
+
+# map DD delete
+# map p paste
+# map x cut
+# map y copy
+# map <enter> open
+# map mf mkfile
+# map mr sudomkfile
+# map md mkdir
+# map ms $mkscript
+# map ch chmod
+# map bg setwallpaper
+# map o open_config
+# map r rename
+# map H top
+# map L bottom
+# map R reload
+# map C clear
+# map U unselect
+
+# marks
+map bm mark-save
+map bl mark-load
+map br mark-remove
+
+# make some stuff
+map md mkdir
+map mf mkfile
+map mx $chmod +x "$f"
+
+map zf fzf_jump
+
+# display toggles
+map .   set hidden!
+map ta  set info size:time
+map th  set hidden!
+map tn  set info
+map tr  set reverse!
+map ts  set info size
+map tzt set info time
+#
+# use enter for shell commands
+map <enter> shell
+#
+#
+map e $$EDITOR $f
+map i $$PAGER $f
+map w $$SHELL
+map R $export EDITOR=vim && vidir $f
+#
+# execute current file (must be executable)
+map x $$f
+map X !$f
+#
+# dedicated keys for file opener actions
+map o &mimeopen $f
+map O $mimeopen --ask $f
+#
+# navigation
+map <lt> top
+map <gt> bottom
+#
+# goto locations
+map gh  cd ~/
+map gC  cd ~/.config
+map gL  cd ~/.local
+map gcl cd ~/Code/local
+map gct cd ~/Code/Talend
+map gp  cd ~/Pictures/Screenshots
+map gdr cd ~/Dropbox
+map gdn cd ~/Dropbox/Notes
+map gdw cd ~/Dropbox/Notes/work
+map gD  cd ~/Downloads
